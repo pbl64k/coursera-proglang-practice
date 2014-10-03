@@ -26,9 +26,9 @@ second argument will be non-zero.
 ## Integer Division
 
 Write a function `divide_by` that takes two integer numbers and
-evaluates to the result of the integer division of first one by
-the second one. You may assume that the first argument is
-non-negative and the second one is strictly positive. You
+evaluates to the result of the integer division of the first
+one by the second one. You may assume that the first argument
+is non-negative and the second one is strictly positive. You
 should not use the `div` operator.
 
 **HINT:** Recall the `pow` function in the lectures.
@@ -83,7 +83,7 @@ on the list are positive.
 Write a function `any_divisible_by` that takes a list of
 integers and a divisor (an integer number) and evaluates to
 either `true` or `false`. The function should evaluate to
-`true` if any of the number on the list are divisible by the
+`true` if any of the numbers on the list are divisible by the
 function's second argument.
 
 **SIGNATURE:** `val any_divisible_by = fn : int list * int -> bool`
@@ -95,9 +95,9 @@ function's second argument.
 Write a function `safe_divide_by` that takes two integer
 numbers and evaluates to an `int option`. If the second
 argument is non-zero, the function should evaluate to `SOME`
-$$x$$ where $$x$$ is the result of integer division of first
-argument by the second one, otherwise it should evaluate to
-`NONE`. You may and should use the `div` operator for this
+$$x$$ where $$x$$ is the result of the integer division of the
+first argument by the second one, otherwise it should evaluate
+to `NONE`. You may and should use the `div` operator for this
 problem.
 
 **SIGNATURE:** `val safe_divide_by = fn : int * int -> int option`
