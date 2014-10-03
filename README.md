@@ -18,3 +18,7 @@ To gain the most out of practice problems, we recommend to
 approach them in exactly the same way you would work on your
 graded assignments -- that is, without looking at solutions or
 provided tests.
+
+Problem sets together with test suites and solutions will be
+published in pinned threads on the forum for corresponding
+section.
