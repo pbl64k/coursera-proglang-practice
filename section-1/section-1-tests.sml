@@ -35,7 +35,7 @@ val test_gcd_5 = gcd (5, 3) = 1
 val test_gcd_6 = gcd (100, 1) = 1
 val test_gcd_7 = gcd (1, 10) = 1
 
-(* Least Common Multple *)
+(* Least Common Multiple *)
 val test_lcm_1 = lcm (18, 12) = 36
 val test_lcm_2 = lcm (18, 13) =  234
 val test_lcm_3 = lcm (12, 36) = 36
