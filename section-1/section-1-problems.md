@@ -7,9 +7,9 @@ evaluates to `true` or `false`. The function should evaluate to
 `true` if its argument is a positive number, and to `false`
 otherwise.
 
-SIGNATURE: `val is_positive = fn : int -> bool`
+**SIGNATURE:** `val is_positive = fn : int -> bool`
 
-EXAMPLE: `is_positive 1 = true`
+**EXAMPLE:** `is_positive 1 = true`
 
 ## Divisibility
 
@@ -19,9 +19,9 @@ to `true` if its first argument is divisible by its second
 argument, and to `false` otherwise. You may assume that the
 second argument will be non-zero.
 
-SIGNATURE: `val is_divisible_by = fn : int * int -> bool`
+**SIGNATURE:** `val is_divisible_by = fn : int * int -> bool`
 
-EXAMPLE: `is_divisible_by (6, 3) = true`
+**EXAMPLE:** `is_divisible_by (6, 3) = true`
 
 ## Integer Division
 
@@ -31,11 +31,11 @@ the second one. You may assume that the first argument is
 non-negative and the second one is strictly positive. You
 should not use the `div` operator.
 
-HINT: Recall the `pow` function in the lectures.
+**HINT:** Recall the `pow` function in the lectures.
 
-SIGNATURE: `val divide_by = fn : int * int -> int`
+**SIGNATURE:** `val divide_by = fn : int * int -> int`
 
-EXAMPLE: `divide_by (7, 3) = 2`
+**EXAMPLE:** `divide_by (7, 3) = 2`
 
 ## Greatest Common Divisor
 
@@ -47,9 +47,9 @@ http://en.wikipedia.org/wiki/Greatest_common_divisor
 
 You may assume that both numbers are positive.
 
-SIGNATURE: `val gcd = fn : int * int -> int`
+**SIGNATURE:** `val gcd = fn : int * int -> int`
 
-EXAMPLE: `gcd (18, 12) = 6`
+**EXAMPLE:** `gcd (18, 12) = 6`
 
 ## Least Common Multiple
 
@@ -61,9 +61,9 @@ http://en.wikipedia.org/wiki/Least_common_multiple
 
 You may assume that both numbers are positive.
 
-SIGNATURE: `val lcm = fn : int * int -> int`
+**SIGNATURE:** `val lcm = fn : int * int -> int`
 
-EXAMPLE: `lcm (18, 12) = 36`
+**EXAMPLE:** `lcm (18, 12) = 36`
 
 ## Greatest Common Divisor -- Continued
 
@@ -74,9 +74,9 @@ $$\gcd(a_1, \dots, a_n) = \gcd(a_1, \gcd(a_2, \gcd(a_3, \dots)))$$
 You may assume that the list is non-empty and all the numbers
 on the list are positive.
 
-SIGNATURE: `val gcd_list = fn : int list -> int`
+**SIGNATURE:** `val gcd_list = fn : int list -> int`
 
-EXAMPLE: `gcd [18, 12, 3] = 3`
+**EXAMPLE:** `gcd [18, 12, 3] = 3`
 
 ## Element Of A List
 
@@ -86,9 +86,9 @@ either `true` or `false`. The function should evaluate to
 `true` if any of the number on the list are divisible by the
 function's second argument.
 
-SIGNATURE: `val any_divisible_by = fn : int list * int -> bool`
+**SIGNATURE:** `val any_divisible_by = fn : int list * int -> bool`
 
-EXAMPLE: `any_divisible_by ([13, 1, 20], 5) = true`
+**EXAMPLE:** `any_divisible_by ([13, 1, 20], 5) = true`
 
 ## Integer Division -- Continued
 
@@ -100,9 +100,9 @@ argument by the second one, otherwise it should evaluate to
 `NONE`. You may and should use the `div` operator for this
 problem.
 
-SIGNATURE: `val safe_divide_by = fn : int * int -> int option`
+**SIGNATURE:** `val safe_divide_by = fn : int * int -> int option`
 
-EXAMPLE: `safe_divide_by (7, 3) = SOME 2`
+**EXAMPLE:** `safe_divide_by (7, 3) = SOME 2`
 
 ## Lists And Tuples, Oh My!
 
@@ -113,12 +113,12 @@ elements of the argument (in order), and the second element of
 the result consists of all second elements of the tuples in
 the original list.
 
-HINT: There are several approaches to this, some of which could
+**HINT:** There are several approaches to this, some of which could
 be directly based on the code in the lectures.
 
-SIGNATURE: `val unzip = fn : (int * int) list -> int list * int list`
+**SIGNATURE:** `val unzip = fn : (int * int) list -> int list * int list`
 
-EXAMPLE: `unzip [(1, 2), (3, 4), (5, 6)] = ([1, 3, 5], [2, 4, 6])`
+**EXAMPLE:** `unzip [(1, 2), (3, 4), (5, 6)] = ([1, 3, 5], [2, 4, 6])`
 
 ## BananaBanana
 
@@ -127,9 +127,9 @@ evaluates to another `string list`, consisting of the elements
 of the original list, in the same order, but with each one
 repeated twice.
 
-SIGNATURE: `val duplicate = fn : string list -> string list`
+**SIGNATURE:** `val duplicate = fn : string list -> string list`
 
-EXAMPLE: `duplicate ["a", "bc", "def"] = ["a", "a", "bc", "bc", "def", "def"]`
+**EXAMPLE:** `duplicate ["a", "bc", "def"] = ["a", "a", "bc", "bc", "def", "def"]`
 
 ## BananaBanana -- Continued
 
@@ -142,7 +142,7 @@ argument repeated three times etc. You will need to use the
 string concatenation operator `^`. You may assume that the
 second argument is non-negative.
 
-SIGNATURE: `val repeats = fn : string * int -> string list`
+**SIGNATURE:** `val repeats = fn : string * int -> string list`
 
-EXAMPLE: `repeats ("banana", 2) = ["banana", "bananabanana"]`
+**EXAMPLE:** `repeats ("banana", 2) = ["banana", "bananabanana"]`
 
