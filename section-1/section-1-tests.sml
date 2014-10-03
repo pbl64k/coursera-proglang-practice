@@ -44,7 +44,7 @@ val test_lcm_5 = lcm (5, 3) = 15
 val test_lcm_6 = lcm (100, 1) = 100
 val test_lcm_7 = lcm (1, 10) = 10
 
-(* Greatedt Common Divisor -- Continued *)
+(* Greatest Common Divisor -- Continued *)
 val test_gcd_list_1 = gcd_list ([18, 12, 3]) = 3
 val test_gcd_list_2 = gcd_list ([18]) = 18
 val test_gcd_list_3 = gcd_list ([18, 12, 13]) = 1
