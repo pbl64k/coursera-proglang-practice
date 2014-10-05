@@ -76,7 +76,7 @@ on the list are positive.
 
 **SIGNATURE:** `val gcd_list = fn : int list -> int`
 
-**EXAMPLE:** `gcd [18, 12, 3] = 3`
+**EXAMPLE:** `gcd_list [18, 12, 3] = 3`
 
 ## Element Of A List
 
