@@ -104,6 +104,51 @@ problem.
 
 **EXAMPLE:** `safe_divide_by (7, 3) = SOME 2`
 
+## Quirky Addition (*)
+
+Write a function `add_opt` that given two "optional" integers,
+adds them if they are both present, or evaluates to `NONE` if
+at least one of the two arguments is `NONE`.
+
+**SIGNATURE:** `val add_opt = fn : int option * int option -> int option`
+
+**EXAMPLE:** `add_opt (SOME 1, SOME 2) = SOME 3`
+
+## Quirky Addition -- Continued (*)
+
+Write a function `add_all_opt` option that given a list of
+"optional" integers, adds those integers that are there (i.e.
+adds all the `SOME i`). If the list does not contain any `SOME`
+is in it, i.e. they are all `NONE` or the list is empty, the
+function should evaluate to NONE.
+
+**HINT:** It probably wouldn't make sense to use `add_opt` for
+this.
+
+**SIGNATURE:** `val add_all_opt = fn : int option list -> int option`
+
+**EXAMPLE:** `add_all_opt [SOME 1, NONE, SOME 3] = SOME 4`
+
+## Flip Flop (*)
+
+Write a function `alternate` that takes a list of numbers and
+adds them with alternating sign, so the result of applying this
+function to `[1, 2, 3, 4]` should be `1 - 2 + 3 - 4 = ~2`.
+
+**SIGNATURE:** `val alternate = fn : int list -> int`
+
+**EXAMPLE:** `alternate [1, 2, 3, 4] = ~2`
+
+## Minimum/Maximum (*)
+
+Write a function `min_max` that takes a non-empty list of
+numbers, and evaluates to a tuple `(min, max)` of the minimum
+and maximum of the numbers in the list.
+
+**SIGNATURE:** `val min_max = fn : int list -> int * int`
+
+**EXAMPLE:** `min_max [3, 1, 2, 5, 4] = (1, 5)`
+
 ## Lists And Tuples, Oh My!
 
 Write a function `unzip` that takes an `(int * int) list` and
@@ -120,6 +165,36 @@ be directly based on the code in the lectures.
 
 **EXAMPLE:** `unzip [(1, 2), (3, 4), (5, 6)] = ([1, 3, 5], [2, 4, 6])`
 
+## Lists And Tuples, Oh My! -- Continued (1) (*)
+
+Write a function `zip` that given two lists of integers
+evaluates to a list of corresponding consecutive pairs,
+stopping when one of the lists is empty.
+
+**SIGNATURE:** `val zip = fn : int list * int list -> (int * int) list`
+
+**EXAMPLE:** `zip ([1, 2, 3], [4, 6]) = [(1, 4), (2, 6)]`
+
+## Lists And Tuples, Oh My! -- Continued (2) (*)
+
+Write a version `zip_recycle` of `zip`, where when one list is
+empty it starts recycling from its start until the other list
+completes.
+
+**SIGNATURE:** `val zip_recycle = fn : int list * int list -> (int * int) list`
+
+**EXAMPLE:** `zip_recycle ([1, 2, 3], [4, 6]) = [(1, 4), (2, 6), (3, 4)]`
+
+## Lists And Tuples, Oh My! -- Continued (3) (*)
+
+Write a version `zip_opt` of `zip` that should evaluate to a
+`SOME` list when the original lists have the same length, and
+to `NONE` if they do not.
+
+**SIGNATURE:** `val zip_opt = fn : int list * int list -> (int * int) list option`
+
+**EXAMPLE:** `zip_opt ([1, 2, 3], [4, 6]) = NONE`
+
 ## BananaBanana
 
 Write a function `duplicate` that takes a `string list` and
@@ -130,6 +205,18 @@ repeated twice.
 **SIGNATURE:** `val duplicate = fn : string list -> string list`
 
 **EXAMPLE:** `duplicate ["a", "bc", "def"] = ["a", "a", "bc", "bc", "def", "def"]`
+
+## Greetings, Earthlings! (*)
+
+Write a function `greeting` that given an (optional) name
+string evaluates to the string `"Hello there, ...!"` where the
+dots would be replaced by the name. Note that the name is given
+as an option, so if it is `NONE` then replace the dots with
+`"you"`.
+
+**SIGNATURE:** `val greeting = fn : string option -> string`
+
+**EXAMPLE:** `greeting (SOME "Charilaos") = "Hello there, Charilaos!"`
 
 ## BananaBanana -- Continued
 
@@ -145,4 +232,18 @@ second argument is non-negative.
 **SIGNATURE:** `val repeats = fn : string * int -> string list`
 
 **EXAMPLE:** `repeats ("banana", 2) = ["banana", "bananabanana"]`
+
+## BananaBanana -- Continued (Again) (*)
+
+Write a function `repeats_list` that given a list of integers
+and another list of nonnegative integers, repeats the integers
+in the first list according to the numbers indicated by the
+second list. You may assume that both lists have the same
+length.
+
+**SIGNATURE:** `val repeats_list = fn : string list * int list -> string list`
+
+*EXAMPLE:* `repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]`
+
+(*) Problems contributed by Charilaos Skiadas.
 

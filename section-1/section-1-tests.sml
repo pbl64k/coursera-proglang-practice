@@ -74,19 +74,80 @@ val test_safe_divide_by_9 = safe_divide_by (6, 0) = NONE
 val test_safe_divide_by_10 = safe_divide_by (5, 0) = NONE
 val test_safe_divide_by_11 = safe_divide_by (87, 0) = NONE
 
+(* Quirky Addition *)
+
+val test_add_opt_1 = add_opt (SOME 1, SOME 2) = SOME 3
+val test_add_opt_2 = add_opt (SOME 1, NONE) = NONE
+val test_add_opt_3 = add_opt (NONE, SOME 2) = NONE
+val test_add_opt_4 = add_opt (NONE, NONE) = NONE
+val test_add_opt_5 = add_opt (SOME ~123, SOME 15) = SOME ~108
+
+(* Quirky Addition -- Continued *)
+val test_add_all_opt_1 = add_all_opt [SOME 1, NONE, SOME 3] = SOME 4
+val test_add_all_opt_2 = add_all_opt [] = NONE
+val test_add_all_opt_3 = add_all_opt [NONE, NONE, NONE] = NONE
+val test_add_all_opt_4 = add_all_opt [SOME 123] = SOME 123
+val test_add_all_opt_5 = add_all_opt [NONE, SOME ~1, NONE, NONE] = SOME ~1
+
+(* Flip Flop *)
+val test_alternate_1 = alternate [1, 2, 3, 4] = ~2
+val test_alternate_2 = alternate [] = 0
+val test_alternate_3 = alternate [~100] = ~100
+val test_alternate_4 = alternate [1, ~2, 3, ~4] = 10
+val test_alternate_5 = alternate [~1, 2, ~3, 4] = ~10
+
+(* Minimum/Maximum *)
+val test_min_max_1 = min_max [3, 1, 2, 5, 4] = (1, 5)
+val test_min_max_2 = min_max [1] = (1, 1)
+val test_min_max_3 = min_max [~1000000, 1, 1, 1, 1000000] = (~1000000, 1000000)
+
 (* Lists And Tuples, Oh My! *)
 val test_unzip_1 = unzip [(1, 2), (3, 4), (5, 6)] = ([1, 3, 5], [2, 4, 6])
 val test_unzip_2 = unzip [] = ([], [])
 val test_unzip_3 = unzip [(123, 321), (321, 123)] = ([123, 321], [321, 123])
+
+(* Lists And Tuples, Oh My! -- Continued (1) *)
+val test_zip_1 = zip ([1, 2, 3], [4, 6]) = [(1, 4), (2, 6)]
+val test_zip_2 = zip ([], [4, 6]) = []
+val test_zip_3 = zip ([1, 2, 3], []) = []
+val test_zip_4 = zip ([], []) = []
+val test_zip_5 = zip ([1, 2], [4, 6, 8]) = [(1, 4), (2, 6)]
+val test_zip_6 = zip ([1, 2, 3], [4, 6, 8]) = [(1, 4), (2, 6), (3, 8)]
+
+(* Lists And Tuples, Oh My! -- Continued (2) *)
+val test_zip_recycle_1 = zip_recycle ([1, 2, 3], [4, 6]) = [(1, 4), (2, 6), (3, 4)]
+val test_zip_recycle_2 = zip_recycle ([], [4, 6]) = []
+val test_zip_recycle_3 = zip_recycle ([1, 2, 3], []) = []
+val test_zip_recycle_4 = zip_recycle ([], []) = []
+val test_zip_recycle_5 = zip_recycle ([1, 2], [4, 6, 8]) = [(1, 4), (2, 6), (1, 8)]
+val test_zip_recycle_6 = zip_recycle ([1, 2, 3], [4, 6, 8]) = [(1, 4), (2, 6), (3, 8)]
+
+(* Lists And Tuples, Oh My! -- Continued (3) *)
+val test_zip_opt_1 = zip_opt ([1, 2, 3], [4, 6]) = NONE
+val test_zip_opt_2 = zip_opt ([], [4, 6]) = NONE
+val test_zip_opt_3 = zip_opt ([1, 2, 3], []) = NONE
+val test_zip_opt_4 = zip_opt ([], []) = SOME []
+val test_zip_opt_5 = zip_opt ([1, 2], [4, 6, 8]) = NONE
+val test_zip_opt_6 = zip_opt ([1, 2, 3], [4, 6, 8]) = SOME [(1, 4), (2, 6), (3, 8)]
 
 (* BananaBanana *)
 val test_duplicate_1 = duplicate ["a", "bc", "def"] = ["a", "a", "bc", "bc", "def", "def"]
 val test_duplicate_2 = duplicate [] = []
 val test_duplicate_3 = duplicate (duplicate ["banana"]) = ["banana", "banana", "banana", "banana"]
 
+(* Greetings, Earthlings! *)
+val test_greeting_1 = greeting (SOME "Charilaos") = "Hello there, Charilaos!"
+val test_greeting_2 = greeting (SOME "student") = "Hello there, student!"
+val test_greeting_3 = greeting NONE = "Hello there, you!"
+
 (* BananaBanana -- Continued *)
 val test_repeats_1 = repeats ("banana", 2) = ["banana", "bananabanana"]
 val test_repeats_2 = repeats ("banana", 0) = []
 val test_repeats_3 = repeats ("banana", 4) = ["banana", "bananabanana", "bananabananabanana", "bananabananabananabanana"]
 val test_repeats_4 = repeats ("a", 5) = ["a", "aa", "aaa", "aaaa", "aaaaa"]
+
+(* BananaBanana -- Continued (Again) *)
+val test_repeats_list_1 = repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]
+val test_repeats_list_2 = repeats_list ([], []) = []
+val test_repeats_list_3 = repeats_list (["a"], [10]) = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
 
