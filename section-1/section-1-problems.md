@@ -243,7 +243,7 @@ length.
 
 **SIGNATURE:** `val repeats_list = fn : string list * int list -> string list`
 
-*EXAMPLE:* `repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]`
+**EXAMPLE:** `repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]`
 
 (*) Problems contributed by Charilaos Skiadas.
 
