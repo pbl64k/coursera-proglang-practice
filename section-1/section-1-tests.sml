@@ -75,7 +75,6 @@ val test_safe_divide_by_10 = safe_divide_by (5, 0) = NONE
 val test_safe_divide_by_11 = safe_divide_by (87, 0) = NONE
 
 (* Quirky Addition *)
-
 val test_add_opt_1 = add_opt (SOME 1, SOME 2) = SOME 3
 val test_add_opt_2 = add_opt (SOME 1, NONE) = NONE
 val test_add_opt_3 = add_opt (NONE, SOME 2) = NONE
