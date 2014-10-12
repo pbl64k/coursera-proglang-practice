@@ -1,3 +1,62 @@
+(* 38 Cons Cells *)
+
+fun length_of_a_list elems =
+    let
+        fun helper (counted, elems) =
+            case elems of
+                [] => counted
+              | x :: elems' => helper (counted + 1, elems')
+    in
+        helper (0, elems)
+    end
+
+(* Pass/Fail *)
+
+(* provided definitions *)
+type student_id = int
+type grade = int (* must be in 0 to 100 range *)
+type final_grade = { id : student_id, grade : grade option }
+datatype pass_fail = pass | fail
+
+(* Pass/Fail -- 1 *)
+fun pass_or_fail param =
+    case param of
+        { id = _, grade = SOME grade } => if grade >= 75 then pass else fail
+      | _ => fail
+
+(* Pass/Fail -- 2 *)
+fun has_passed param =
+    case pass_or_fail param of
+        pass => true
+      | _ => false
+
+(* Pass/Fail -- 3 *)
+fun number_passed grades =
+    case grades of
+        [] => 0
+      | grade :: grades' => (if has_passed grade then 1 else 0) + number_passed grades'
+
+(* Pass/Fail -- 4 *)
+fun group_by_outcome grades =
+    let
+        fun insert_id outcome id result =
+            case result of
+                [] => [(outcome, [id])]
+              | (outcome', ids) :: rest =>
+                    if outcome = outcome'
+                        then (outcome, id :: ids) :: rest
+                        else (outcome', ids) :: insert_id outcome id rest
+        fun helper grades =
+            case grades of
+                [] => []
+              | { id = id, grade = grade } :: grades => insert_id (pass_or_fail { id = id, grade = grade }) id (helper grades)
+        val result = helper grades
+    in
+        case result of
+            (fail, failing) :: (pass, passing) :: [] => [(pass, passing), (fail, failing)]
+          | _ => result
+    end
+
 (* Back To The Future! *)
 
 (* GCD -- Redux *)

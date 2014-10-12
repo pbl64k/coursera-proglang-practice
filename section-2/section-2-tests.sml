@@ -1,15 +1,59 @@
 (* All tests should evaluate to true. *)
 
+(* 38 Cons Cells *)
+
+val test_length_of_a_list_1 = length_of_a_list [1] = 1
+val test_length_of_a_list_2 = length_of_a_list [] = 0
+val test_length_of_a_list_3 = length_of_a_list [[], [], [1, 2]] = 3
+val test_length_of_a_list_4 = length_of_a_list [(1, "hi"), (2, "there")] = 2
+val test_length_of_a_list_5 = length_of_a_list ["a", "quick", "brown", "fox"] = 4
+
+(* Pass/Fail *)
+
+(* Pass/Fail -- 1 *)
+val test_pass_or_fail_1 = pass_or_fail { id = 1023, grade = SOME 73 } = fail
+val test_pass_or_fail_2 = pass_or_fail { id = 1, grade = SOME 48 } = fail
+val test_pass_or_fail_3 = pass_or_fail { id = 10231023, grade = SOME 0 } = fail
+val test_pass_or_fail_4 = pass_or_fail { id = 1729, grade = NONE } = fail
+val test_pass_or_fail_5 = pass_or_fail { id = 432, grade = SOME 74 } = fail
+val test_pass_or_fail_6 = pass_or_fail { id = 2, grade = SOME 75 } = pass
+val test_pass_or_fail_7 = pass_or_fail { id = 13, grade = SOME 100 } = pass
+val test_pass_or_fail_8 = pass_or_fail { id = 15, grade = SOME 86 } = pass
+
+(* Pass/Fail -- 2 *)
+val test_has_passed_1 = has_passed { id = 1023, grade = SOME 73 } = false
+val test_has_passed_2 = has_passed { id = 1, grade = SOME 48 } = false
+val test_has_passed_3 = has_passed { id = 10231023, grade = SOME 0 } = false
+val test_has_passed_4 = has_passed { id = 1729, grade = NONE } = false
+val test_has_passed_5 = has_passed { id = 432, grade = SOME 74 } = false
+val test_has_passed_6 = has_passed { id = 2, grade = SOME 75 } = true
+val test_has_passed_7 = has_passed { id = 13, grade = SOME 100 } = true
+val test_has_passed_8 = has_passed { id = 15, grade = SOME 86 } = true
+
+(* Pass/Fail -- 3 *)
+val test_number_passed_1 = number_passed [{ id = 1, grade = SOME 65 }, { id = 2, grade = SOME 82 }, { id = 3, grade = NONE }, { id = 5, grade = SOME 96 }] = 2
+val test_number_passed_2 = number_passed [] = 0
+val test_number_passed_3 = number_passed [{ id = 12, grade = SOME 100 }, { id = 14, grade = SOME 0 }, { id = 9, grade = NONE }, { id = 2, grade = NONE }] = 1
+val test_number_passed_4 = number_passed [{ id = 1, grade = SOME 76 }, { id = 2, grade = SOME 82 }, { id = 5, grade = SOME 96 }] = 3
+
+(* Pass/Fail -- 4 *)
+val test_group_by_outcome_1 = group_by_outcome [{ id = 1025, grade = NONE }, { id = 4, grade = SOME 99 }] = [(pass, [4]), (fail, [1025])]
+val test_group_by_outcome_2 = group_by_outcome [{ id = 1025, grade = SOME 82 }, { id = 4, grade = SOME 99 }] = [(pass, [1025, 4])]
+val test_group_by_outcome_3 = group_by_outcome [{ id = 1025, grade = NONE }, { id = 4, grade = SOME 34 }] = [(fail, [1025, 4])]
+val test_group_by_outcome_4 = group_by_outcome [{ id = 1025, grade = SOME 76 }, { id = 4, grade = SOME 99 }, { id = 13, grade = NONE }, { id = 34, grade = SOME 74 }, { id = 1111, grade = SOME 89 }] = [(pass, [1025, 4, 1111]), (fail, [13, 34])]
+(* causes polyEqual warning if group_by_outcome has a polymorphic type -- that's ok *)
+val test_group_by_outcome_5 = group_by_outcome [] = []
+
 (* Back To The Future! *)
 
 (* GCD -- Redux *)
-val test_gcd_list_1 = gcd_list ([18, 12, 3]) = 3
-val test_gcd_list_2 = gcd_list ([18]) = 18
-val test_gcd_list_3 = gcd_list ([18, 12, 13]) = 1
-val test_gcd_list_4 = gcd_list ([10, 18, 12]) = 2
-val test_gcd_list_5 = gcd_list ([100, 1000, 1]) = 1
-val test_gcd_list_6 = gcd_list ([18, 12, 180, 42]) = 6
-val test_gcd_list_7 = gcd_list ([18, 12]) = 6
+val test_gcd_list_1 = gcd_list [18, 12, 3] = 3
+val test_gcd_list_2 = gcd_list [18] = 18
+val test_gcd_list_3 = gcd_list [18, 12, 13] = 1
+val test_gcd_list_4 = gcd_list [10, 18, 12] = 2
+val test_gcd_list_5 = gcd_list [100, 1000, 1] = 1
+val test_gcd_list_6 = gcd_list [18, 12, 180, 42] = 6
+val test_gcd_list_7 = gcd_list [18, 12] = 6
 
 (* Element Of A List -- Redux *)
 val test_any_divisible_by_1 = any_divisible_by ([13, 1, 20], 5) = true
@@ -53,6 +97,7 @@ val test_unzip_3 = unzip [(123, 321), (321, 123)] = ([123, 321], [321, 123])
 
 (* BBCA -- Redux *)
 val test_repeats_list_1 = repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]
+(* causes polyEqual warning if repeats_list has a polymorphic type -- that's ok *)
 val test_repeats_list_2 = repeats_list ([], []) = []
 val test_repeats_list_3 = repeats_list (["a"], [10]) = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
 
