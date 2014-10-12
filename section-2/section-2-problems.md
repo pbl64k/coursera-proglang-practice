@@ -102,6 +102,58 @@ the resulting list should contain `(pass, ...)` before
 
 ## Forest For The Trees
 
+To flex our mental muscles with algebraic data types and
+records a little, we'll work with binary trees. We'll use the
+following definition:
+
+    datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree }
+
+Thus a binary tree is a recusive data structure that is either
+a plain `leaf`, or a `node` containing a value and two other
+trees of the same type. This parallels the definition of
+lists, but with two references to "following" elements.
+
+Note that while this datatype can be used to build binary
+search trees, we're not assuming the existence of any
+invariant -- values in the nodes may be of any type and may be
+distributed arbitrarily.
+
+### Forest For The Trees -- 1
+
+Write a function `tree_height` that accepts an `'a tree` and
+evaluates to a height of this tree. The height of the tree is
+the length of the longest path to a `leaf` in this tree. Thus
+the height of a `leaf` is $$0$$.
+
+**SIGNATURE:** `val tree_height = fn : 'a tree -> int`
+
+**EXAMPLE:** `tree_height (node { value = 0, left = node { value = 0, left = node { value = 0, left = leaf, right = leaf }, right = leaf }, right = node { value = 0, left = leaf, right = leaf } }) = 3`
+
+### Forest For The Trees -- 2
+
+Write a function `sum_tree` that takes an `int tree` and
+evaluates to the sum of all values in the nodes.
+
+**SIGNATURE:** `val sum_tree = fn : int tree -> int`
+
+**EXAMPLE:** `sum_tree (node { value = 1, left = node { value = 2, left = node { value = 3, left = leaf, right = leaf }, right = leaf }, right = node { value = 4, left = leaf, right = leaf } }) = 10`
+
+### Forest For The Trees -- 3
+
+We'll define a simple datatype for this problem:
+
+    datatype flag = leave_me_alone | prune_me
+
+Write a function `gardener` takes takes `flag tree` and
+evaluates a new tree of the same type, such that its structure
+is identical to the original tree, but all nodes marked with
+`prune_me` have been removed together with their descendant
+nodes and replaced with leaves.
+
+**SIGNATURE:** `val gardener = fn : flag tree -> flag tree`
+
+**EXAMPLE:** `gardener (node { value = leave_me_alone, left = node { value = prune_me, left = node { value = leave_me_alone, left = leaf, right = leaf }, right = leaf }, right = node { value = leave_me_alone, left = leaf, right = leaf } }) = node { value = leave_me_alone, left = leaf, right = node { value = leave_me_alone, left = leaf, right = leaf } }`
+
 ## Back To The Future!
 
 A few of the practice problems from Section 1 can be rewritten
@@ -184,8 +236,8 @@ That's totally fine -- awesome, actually!
 
 (*) The author of this problem apologizes for using an obscure
 cultural reference that is unlikely to be understood by anyone
-who does not speak his native language as a title for this
-problem. Couldn't resist the temptation.
+who does not speak author's native language as a title for
+this problem. Couldn't resist the temptation.
 
 (**) Problems contributed by Charilaos Skiadas.
 

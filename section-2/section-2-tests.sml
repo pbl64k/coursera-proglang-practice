@@ -8,7 +8,7 @@ val test_length_of_a_list_3 = length_of_a_list [[], [], [1, 2]] = 3
 val test_length_of_a_list_4 = length_of_a_list [(1, "hi"), (2, "there")] = 2
 val test_length_of_a_list_5 = length_of_a_list ["a", "quick", "brown", "fox"] = 4
 
-(* Pass/Fail *)
+(** Pass/Fail **)
 
 (* Pass/Fail -- 1 *)
 val test_pass_or_fail_1 = pass_or_fail { id = 1023, grade = SOME 73 } = fail
@@ -44,7 +44,32 @@ val test_group_by_outcome_4 = group_by_outcome [{ id = 1025, grade = SOME 76 }, 
 (* causes polyEqual warning if group_by_outcome has a polymorphic type -- that's ok *)
 val test_group_by_outcome_5 = group_by_outcome [] = []
 
-(* Back To The Future! *)
+(** Forest For The Trees **)
+
+(* Forest For The Trees -- 1 *)
+val test_tree_height_1 = tree_height (node { value = 0, left = node { value = 0, left = node { value = 0, left = leaf, right = leaf }, right = leaf }, right = node { value = 0, left = leaf, right = leaf } }) = 3
+val test_tree_height_2 = tree_height leaf = 0
+val test_tree_height_3 = tree_height (node { value = "abcde", left = leaf, right = leaf }) = 1
+val test_tree_height_4 = tree_height (node { value = true, left = leaf, right = leaf }) = 1
+val test_tree_height_5 = tree_height (node { value = 0, left = leaf, right = node { value = 0, left = node { value = 0, left = leaf, right = leaf }, right = leaf } }) = 3
+
+(* Forest For The Trees -- 2 *)
+val test_sum_tree_1 = sum_tree (node { value = 1, left = node { value = 2, left = node { value = 3, left = leaf, right = leaf }, right = leaf }, right = node { value = 4, left = leaf, right = leaf } }) = 10
+val test_sum_tree_2 = sum_tree leaf = 0
+val test_sum_tree_3 = sum_tree (node { value = 1729, left = leaf, right = leaf }) = 1729
+val test_sum_tree_4 = sum_tree (node { value = 32, left = leaf, right = node { value = ~60, left = node { value = 17, left = leaf, right = leaf }, right = leaf } }) = ~11
+
+(* Forest For The Trees -- 3 *)
+val test_gardener_1 = gardener (node { value = leave_me_alone, left = node { value = prune_me, left = node { value = leave_me_alone, left = leaf, right = leaf }, right = leaf }, right = node { value = leave_me_alone, left = leaf, right = leaf } }) = node { value = leave_me_alone, left = leaf, right = node { value = leave_me_alone, left = leaf, right = leaf } }
+val test_gardener_2 = gardener leaf = leaf
+val test_gardener_3 = gardener (node { value = prune_me, left = node { value = prune_me, left = node { value = leave_me_alone, left = leaf, right = leaf }, right = leaf }, right = node { value = leave_me_alone, left = leaf, right = leaf } }) = leaf
+val test_gardener_4 = gardener (node { value = leave_me_alone, left = node { value = leave_me_alone, left = node { value = leave_me_alone, left = leaf, right = leaf }, right = leaf }, right = node { value = leave_me_alone, left = leaf, right = leaf } }) = node { value = leave_me_alone, left = node { value = leave_me_alone, left = node { value = leave_me_alone, left = leaf, right = leaf }, right = leaf }, right = node { value = leave_me_alone, left = leaf, right = leaf } }
+val test_gardener_5 = gardener (node { value = leave_me_alone, left = node { value = leave_me_alone, left = node { value = prune_me, left = leaf, right = leaf }, right = leaf }, right = node { value = prune_me, left = leaf, right = leaf } }) = node { value = leave_me_alone, left = node { value = leave_me_alone, left = leaf, right = leaf }, right = leaf }
+val test_gardener_6 = gardener (node { value = prune_me, left = leaf, right = leaf }) = leaf
+val test_gardener_7 = gardener (node { value = leave_me_alone, left = leaf, right = leaf }) = node { value = leave_me_alone, left = leaf, right = leaf }
+val test_gardener_8 = gardener (node { value = leave_me_alone, left = leaf, right = node { value = prune_me, left = node { value = prune_me, left = leaf, right = leaf }, right = leaf } }) = node { value = leave_me_alone, left = leaf, right = leaf }
+
+(** Back To The Future! **)
 
 (* GCD -- Redux *)
 val test_gcd_list_1 = gcd_list [18, 12, 3] = 3

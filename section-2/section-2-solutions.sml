@@ -10,7 +10,7 @@ fun length_of_a_list elems =
         helper (0, elems)
     end
 
-(* Pass/Fail *)
+(** Pass/Fail **)
 
 (* provided definitions *)
 type student_id = int
@@ -57,7 +57,42 @@ fun group_by_outcome grades =
           | _ => result
     end
 
-(* Back To The Future! *)
+(** Forest For The Trees **)
+
+(* provided definition *)
+datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree }
+
+(* Forest For The Trees -- 1 *)
+fun tree_height tree =
+    case tree of
+        leaf => 0
+      | node { value = _, left = ltree, right = rtree } =>
+            let
+                val lheight = tree_height ltree
+                val rheight = tree_height rtree
+            in
+                1 + (if lheight > rheight then lheight else rheight)
+            end
+
+(* Forest For The Trees -- 2 *)
+fun sum_tree tree =
+    case tree of
+        leaf => 0
+      | node { value = x, left = ltree, right = rtree } =>
+            x + sum_tree ltree + sum_tree rtree
+
+(* Forest For The Trees -- 3 *)
+
+(* provided definition *)
+datatype flag = leave_me_alone | prune_me
+
+fun gardener tree =
+    case tree of
+        node { value = leave_me_alone, right = rtree, left = ltree } =>
+            node { value = leave_me_alone, right = gardener rtree, left = gardener ltree }
+      | _ => leaf
+
+(** Back To The Future! **)
 
 (* GCD -- Redux *)
 
