@@ -145,10 +145,10 @@ We'll define a simple datatype for this problem:
     datatype flag = leave_me_alone | prune_me
 
 Write a function `gardener` takes takes `flag tree` and
-evaluates a new tree of the same type, such that its structure
-is identical to the original tree, but all nodes marked with
-`prune_me` have been removed together with their descendant
-nodes and replaced with leaves.
+evaluates to a new tree of the same type, such that its
+structure is identical to the original tree, but all nodes
+marked with `prune_me` have been removed together with their
+descendant nodes and replaced with leaves.
 
 **SIGNATURE:** `val gardener = fn : flag tree -> flag tree`
 
