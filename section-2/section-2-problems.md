@@ -3,7 +3,7 @@
 ## 38 Cons Cells (*)
 
 Write a function `length_of_a_list` that takes an arbitrary
-list (`'a list'`) and evaluates to its length as an integer
+list (`'a list`) and evaluates to its length as an integer
 number. Use pattern matching instead of list functions. Your
 function should be tail-recursive.
 
@@ -48,7 +48,7 @@ specified range), and you do not need to validate the input.
 ### Pass/Fail -- 2
 
 Write a function `has_passed` that takes a `final_grade` and
-evaluates to a `bool` indicating whether a given student has
+evaluates to a `bool` indicating whether the given student has
 passed the class. The rules for determining that are the same
 as in the previous problem.
 
