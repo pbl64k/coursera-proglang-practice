@@ -24,8 +24,8 @@ function and an initial state and produces a list. On each
 step the current state is feed into a state transition
 function, which evaluates either to `NONE`, indicating that
 the result should contain no more elements, or `SOME`
-$$pair$$, where contains the next state and the next list
-element.
+$$pair$$, where $$pair$$ contains the next state and the next
+list element.
 
 **SIGNATURE:** `val unfold = fn : ('a -> ('a * 'b) option) -> 'a -> 'b list`
 
@@ -75,5 +75,87 @@ not provide sufficient insight.
 
 ## Back To The Future! 2
 
+A few of the practice problems from Sections 1 and 2 can be
+rewritten more elegantly using the material from Section 3.
+All problem statements, **SIGNATURES** and **EXAMPLES** remain
+the same, if there are any additional considerations, these
+will be mentioned below. Only some of the potentially eligible
+problems are included -- naturally, you're welcome to rewrite
+the rest on your own, using similar approaches.
+
+### GCD -- Final Redux
+
+Write a function `gcd_list` following the specification from
+Section 1's **Greated Common Divisor -- Continued** problem.
+Use folds. Use the following implementation of `gcd` as a
+helper function:
+
+    fun gcd (a : int, b : int) =
+        if a = b
+        then a
+        else
+            if a < b
+            then gcd (a, b - a)
+            else gcd (a - b, b)
+
+### Element Of A List -- Final Redux
+
+Write a function `any_divisible_by` following the
+specification from Section 1's **Element Of A List** problem.
+Use folds or other high-order list functions. Use the
+following implementation of `is_divisible_by` as a helper
+function:
+
+    fun is_divisible_by (a : int, b : int) = a mod b = 0
+
+### Quirky Addition -- Continued -- Final Redux (*)
+
+Write a function `add_all_opt` following the specification
+from Section 1's **Quirky Addition -- Continued** problem. Use
+folds.
+
+### Flip Flop -- Final Redux (*)
+
+Write a function `alternate` following the specification from
+Section 1's **Flip Flop** problem. Use folds.
+
+### Minimum/Maximum -- Final Redux (*)
+
+Write a function `min_max` following the specification from
+Section 1's **Minimum/Maximum** problem. Use folds.
+
+### Lists And Tuples, Oh My! - Final Redux
+
+Write a function `unzip` following the specification from
+Section 1's **Lists And Tuples, Oh My!** problem. Use folds.
+
+**NOTE:** The type of your function is probably going to be
+more general that the one specified in the original problem.
+That's totally fine -- awesome, actually!
+
+### Lists And Tuples, Oh My! -- Continued (1) -- Final Redux (*) (**)
+
+Write a function `zip` following the specification from
+Section 1's **Lists And Tuples, Oh My! -- Continued (1)**
+problem. Use `unfold` that you wrote in **The Evil Twin**
+problem.
+
+**NOTE:** The type of your function is probably going to be
+more general that the one specified in the original problem.
+That's totally fine -- awesome, actually!
+
+### BBCA -- Final Redux (*)
+
+Write a function `repeats_list` following the specification
+from Section 1's **BananaBanana -- Continued (Again)**
+problem. Use folds.
+
+**NOTE:** The type of your function is probably going to be
+more general that the one specified in the original problem.
+That's totally fine -- awesome, actually!
+
 (*) Problems contributed by Charilaos Skiadas.
+
+(**) And yes, that's a stupid title for a problem. Charilaos
+had nothing to do with *that* part of it.
 
