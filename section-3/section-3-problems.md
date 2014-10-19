@@ -95,7 +95,7 @@ must be comparable for equality.
 ### Newton's Method
 
 Square root of a real number $$n$$ is a fixed point of
-function $$f_n(x) = frac{1}{2}(x + frac{n}{x})$$.
+function $$f_n(x) = \frac{1}{2}(x + \frac{n}{x})$$.
 Unfortunately, for reasons rooted in the arcane art of
 numerical analysis, `real`s are not comparable for equality in
 Standard ML. Write a function `my_sqrt` that takes a real
