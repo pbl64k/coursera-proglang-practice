@@ -55,6 +55,61 @@ terms of `unfold`.
 
 **EXAMPLE:** `unfold_map (fn x => x + 1) [1, 2, 3, 4, 5] = [2, 3, 4, 5, 6]`
 
+### So Imperative (*)
+
+Write a function `do_until` that takes three arguments, `f`,
+`p` and `x`, and keeps applying `f` to `x` until `p x`
+evaluates to `true`. Upon reaching that condition,
+`f (f (f ... (f x) ...))` is returned.
+
+**SIGNATURE:** `val do_until = fn : ('a -> 'a) -> ('a -> bool) -> 'a -> 'a`
+
+**EXAMPLE:** `do_until (fn x => x div 2) (fn x => x mod 2 <> 0) 48 = 3`
+
+### Yet Another Factorial
+
+Write a function `imp_factorial` that has the same behavior as
+the `factorial` function described above, but is defined in
+terms of `do_until`.
+
+**NOTE:** There is a deep relationship between these two
+versions of `factorial` function, with `imp_factorial`
+eliminating the building of an intermediate list.
+
+**SIGNATURE:** `val imp_factorial = fn : int -> int`
+
+**EXAMPLE:** `imp_factorial 4 = 24`
+
+### Fixed Point (*)
+
+Write a function `fixed_point` that accepts some function `f`
+and an initial value `x`, and keeps applying `f` to `x` until
+an `x` is found such that `f x = x`. Note that the function
+must have the same domain and codomain, and that the values
+must be comparable for equality.
+
+**SIGNATURE:** `val fixed_point = fn : (''a -> ''a) -> ''a -> ''a`
+
+**EXAMPLE:** `fixed_point (fn x => x div 2) 17 = 0`
+
+### Newton's Method
+
+Square root of a real number $$n$$ is a fixed point of
+function $$f_n(x) = frac{1}{2}(x + frac{n}{x})$$.
+Unfortunately, for reasons rooted in the arcane art of
+numerical analysis, `real`s are not comparable for equality in
+Standard ML. Write a function `my_sqrt` that takes a real
+number and evaluates to an approximation of its square root.
+You will probably need to write a version of `fixed_point`
+that uses "difference in absolute value less than
+$$\epsilon$$" as a test for equality. Use
+$$\epsilon = 0.0001$$. Use the number itself as an initial
+guess.
+
+**SIGNATURE:** `val my_sqrt = fn : real -> real`
+
+**EXAMPLE:** `abs (my_sqrt 2.0 - Math.sqrt 2.0) < 0.01`
+
 ### Deeper Into The Woods
 
 Let's reuse the binary tree data structure from practice

@@ -31,6 +31,29 @@ val test_unfold_map_2 = unfold_map (fn x => x) [] = []
 val test_unfold_map_3 = unfold_map not [true, false, true, false] = [false, true, false, true]
 val test_unfold_map_4 = unfold_map (fn x => "fnord " ^ x) ["a", "quick", "brown", "fox"] = ["fnord a", "fnord quick", "fnord brown", "fnord fox"]
 
+(* So Imperative *)
+val test_do_until_1 = do_until (fn x => x div 2) (fn x => x mod 2 <> 0) 48 = 3
+val test_do_until_2 = do_until (fn x => x div 2) (fn x => x mod 2 <> 0) 9 = 9
+val test_do_until_3 = do_until (fn x => x ^ " ") (fn x => String.size x > 9) "abcde" = "abcde     "
+
+(* Yet Another Factorial *)
+val test_imp_factorial_1 = imp_factorial 4 = 24
+val test_imp_factorial_2 = imp_factorial 0 = 1
+val test_imp_factorial_3 = imp_factorial 5 = 120
+val test_imp_factorial_4 = imp_factorial 7 = 5040
+
+(* Fixed Point *)
+val test_fixed_point_1 = fixed_point (fn x => x div 2) 17 = 0
+val test_fixed_point_2 = fixed_point (fn x => x) 17 = 17
+
+(* Newton's Method *)
+val test_my_sqrt_1 = abs (my_sqrt 2.0 - Math.sqrt 2.0) < 0.01
+val test_my_sqrt_2 = abs (my_sqrt 9.0 - Math.sqrt 9.0) < 0.01
+val test_my_sqrt_3 = abs (my_sqrt 81.0 - Math.sqrt 81.0) < 0.01
+val test_my_sqrt_4 = abs (my_sqrt 10.0 - Math.sqrt 10.0) < 0.01
+val test_my_sqrt_5 = abs (my_sqrt 3.0 - Math.sqrt 3.0) < 0.01
+val test_my_sqrt_6 = abs (my_sqrt 0.25 - Math.sqrt 0.25) < 0.01
+
 (* Deeper Into The Woods *)
 
 val test_tree_fold_1 = tree_fold (fn (l, v, r) => l ^ v ^ r) "!" (node { value = "foo", left = node { value = "bar", left = leaf, right = leaf }, right = node { value = "baz", left = leaf, right = leaf }}) = "!bar!foo!baz!"

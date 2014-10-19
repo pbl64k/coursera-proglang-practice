@@ -32,6 +32,26 @@ fun unfold_map f =
         unfold helper
     end
 
+(* So Imperative *)
+fun do_until f p x =
+    if p x
+    then x
+    else do_until f p (f x)
+
+(* Yet Another Factorial *)
+fun imp_factorial n = #1 (do_until (fn (acc, x) => (acc * x, x - 1)) (fn (_, x) => x = 0) (1, n))
+
+(* Fixed Point *)
+fun fixed_point f = do_until f (fn x => f x = x)
+
+(* Newton's Method *)
+fun my_sqrt n =
+    let
+        fun fixed_point f x = do_until f (fn x => abs (f x - x) < 0.0001) x
+    in
+        fixed_point (fn x => 0.5 * (x + n / x)) n
+    end
+
 (* Deeper into the woods *)
 
 (* provided definition *)
