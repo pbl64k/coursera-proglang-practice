@@ -45,6 +45,16 @@ tail-recursive factorial implementation?
 
 **EXAMPLE:** `factorial 4 = 24`
 
+### Unforeseen Developments
+
+Write a function `unfold_map`, that behaves exactly as
+`List.map` and `fold_map`, but is implemented in terms of
+`unfold`.
+
+**SIGNATURE:** `val unfold_map = fn : ('a -> 'b) -> 'a list -> 'b list`
+
+**EXAMPLE:** `unfold_map (fn x => x + 1) [1, 2, 3, 4, 5] = [2, 3, 4, 5, 6]`
+
 ### Deeper Into The Woods
 
 Let's reuse the binary tree data structure from practice
@@ -133,7 +143,7 @@ Section 1's **Lists And Tuples, Oh My!** problem. Use folds.
 more general that the one specified in the original problem.
 That's totally fine -- awesome, actually!
 
-### Lists And Tuples, Oh My! -- Continued (1) -- Final Redux (*) (**)
+### Lists And Tuples, Oh My! -- Continued (1) -- Final Redux (\*) (\*\*)
 
 Write a function `zip` following the specification from
 Section 1's **Lists And Tuples, Oh My! -- Continued (1)**
@@ -153,6 +163,19 @@ problem. Use folds.
 **NOTE:** The type of your function is probably going to be
 more general that the one specified in the original problem.
 That's totally fine -- awesome, actually!
+
+### 38 Cons Cells -- Final Redux
+
+Write a function `length_of_a_list` following the
+specification from Section 2's **38 Cons Cells** problem.
+Use folds.
+
+### Forest For The Trees -- Final Redux
+
+Write functions `tree_height`, `sum_tree` and `gardener`
+following specifications from Section 2's **Forest For The
+Trees** series of problems. Use `tree_fold` and/or
+`tree_unfold`.
 
 (*) Problems contributed by Charilaos Skiadas.
 

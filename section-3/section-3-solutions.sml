@@ -21,6 +21,17 @@ val factorial = (List.foldl (op * ) 1) o (unfold (fn x => if x = 0 then NONE els
    will study a data structure that would make
    virtually the same implementation efficient. *)
 
+(* Unforeseen Developments *)
+fun unfold_map f =
+    let
+        fun helper param =
+            case param of
+                [] => NONE
+              | x :: xs => SOME (xs, f x)
+    in
+        unfold helper
+    end
+
 (* Deeper into the woods *)
 
 (* provided definition *)
@@ -102,3 +113,26 @@ fun repeats_list xs =
         unfold helper xs
     end
     
+(* 38 Cons Cells -- Final Redux *)
+fun length_of_a_list xs = List.foldl (fn (_, x) => x + 1) 0 xs
+
+(* Forest For The Trees -- Final Redux *)
+
+fun tree_height t = tree_fold (fn (l, _, r) => 1 + Int.max (l, r)) 0 t
+
+fun sum_tree t = tree_fold (fn (l, v, r) => l + v + r) 0 t
+
+(* provided definition *)
+datatype flag = leave_me_alone | prune_me
+
+fun gardener t =
+    let
+        fun helper state =
+            case state of
+                node { value = prune_me, left = _, right = _ } => NONE
+              | node { value = value, left = left, right = right } => SOME (left, value, right)
+              | _ => NONE
+    in
+        tree_unfold helper t
+    end
+
