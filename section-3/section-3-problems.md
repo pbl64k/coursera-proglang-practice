@@ -83,6 +83,54 @@ not provide sufficient insight.
 
 **EXAMPLE:** `tree_unfold (fn x => if x = 0 then NONE else SOME (x - 1, x, x - 1)) 2 = node { value = 2, left = node { value = 1, left = leaf, right = leaf }, right = node { value = 1, left = leaf, right = leaf }}`
 
+## A Grand Challenge
+
+Let's try to write a simple type inference algorithm for a
+very simple expression language. We won't deal with functions,
+variables or polymorphism.
+
+The expressions will be represented by the following data
+type:
+
+    datatype expr = literal_bool | literal_int | binary_bool_op of expr * expr | binary_int_op of expr * expr | comparison of expr * expr | conditional of expr * expr * expr
+
+The data constructor represent literal booleans, literal
+integers, binary operators on bools, binary operators on
+integers, comparison operators and conditionals. Since we're
+only interested in types, and not in actually evaluating our
+expressions, we're omitting immaterial details, such as
+whether a literal boolean is "true" or "false", or whether
+an operator on integer is addition, subtraction or something
+else entirely.
+
+The types will be represented by the following simple
+datatype:
+
+    datatype expr_type = type_bool | type_int
+
+The typing rules for our expression language are simple:
+
+1. Literal booleans have are of type `type_bool`.
+2. Literal integers have type `type_int`.
+3. Boolean operators have type `type_bool` provided that both
+   operands also have type `type_bool`.
+4. Integer operators have type `type_int` provided that both
+   operands also have type `type_int`.
+5. Comparison operators have type `type_bool` provided that
+   both operands have type `type_int`.
+6. Conditionals have the same type as the first branch,
+   provided that the second branch has the same type, and the
+   condition has type `type_bool`.
+
+Write a function `infer_type` that accepts an `expr` and
+evaluates to the type of the given expression. If the type
+cannot be determined according to the rules above, raise
+`TypeError` exception.
+
+**SIGNATURE:** `val infer_type = fn : expr -> expr_type`
+
+**EXAMPLE:** `infer_type (conditional (literal_bool, literal_int, binary_int_op (literal_int, literal_int))) = type_int`
+
 ## Back To The Future! 2
 
 A few of the practice problems from Sections 1 and 2 can be

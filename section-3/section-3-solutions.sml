@@ -47,6 +47,40 @@ fun tree_unfold f state =
         NONE => leaf
       | SOME (lstate, value, rstate) => node { value = value, left = tree_unfold f lstate, right = tree_unfold f rstate }
 
+(** A Grand Challenge **)
+
+(* provided definitions *)
+datatype expr = literal_bool | literal_int | binary_bool_op of expr * expr | binary_int_op of expr * expr | comparison of expr * expr | conditional of expr * expr * expr
+datatype expr_type = type_bool | type_int
+
+exception TypeError
+
+fun infer_type expr =
+    case expr of
+        literal_bool => type_bool
+      | literal_int => type_int
+      | binary_bool_op (x1, x2) =>
+            if infer_type x1 = type_bool andalso infer_type x2 = type_bool
+            then type_bool
+            else raise TypeError
+      | binary_int_op (x1, x2) =>
+            if infer_type x1 = type_int andalso infer_type x2 = type_int
+            then type_int
+            else raise TypeError
+      | comparison (x1, x2) =>
+            if infer_type x1 = type_int andalso infer_type x2 = type_int
+            then type_bool
+            else raise TypeError
+      | conditional (x1, x2, x3) =>
+            let
+                val t2 = infer_type x2
+                val t3 = infer_type x3
+            in
+                if infer_type x1 = type_bool andalso t2 = t3
+                then t2
+                else raise TypeError
+            end
+
 (** Back To The Future! 2 **)
 
 (* GCD -- Final Redux *)

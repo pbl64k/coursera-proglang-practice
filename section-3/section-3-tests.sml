@@ -41,6 +41,24 @@ val test_tree_unfold_1 = tree_unfold (fn x => if x = 0 then NONE else SOME (x - 
 val test_tree_unfold_2 = tree_unfold (fn x => NONE) NONE = leaf
 val test_tree_unfold_3 = tree_unfold (fn x => if x = 0 then NONE else SOME (x div 2, x, x div 3)) 6 = node { value = 6, left = node { value = 3, left = node { value = 1, left = leaf, right = leaf }, right = node { value = 1, left = leaf, right = leaf } }, right = node { value = 2, left = node { value = 1, left = leaf, right = leaf }, right = leaf }}
 
+(** A Grand Challenge **)
+val test_infer_type_1 = infer_type (conditional (literal_bool, literal_int, binary_int_op (literal_int, literal_int))) = type_int
+val test_infer_type_2 = infer_type literal_int = type_int
+val test_infer_type_3 = infer_type literal_bool = type_bool
+val test_infer_type_4 = (infer_type (conditional (literal_bool, literal_int, binary_int_op (literal_bool, literal_int))); false) handle TypeError => true = true
+val test_infer_type_5 = (infer_type (conditional (literal_bool, literal_bool, binary_int_op (literal_int, literal_int))); false) handle TypeError => true = true
+val test_infer_type_6 = (infer_type (conditional (literal_bool, literal_int, comparison (literal_int, literal_int))); false) handle TypeError => true = true
+val test_infer_type_7 = infer_type (conditional (literal_bool, literal_bool, comparison (literal_int, literal_int))) = type_bool
+val test_infer_type_8 = infer_type (conditional (literal_bool, conditional (literal_bool, literal_bool, comparison (literal_int, binary_int_op (literal_int, literal_int))), comparison (literal_int, literal_int))) = type_bool
+val test_infer_type_9 = infer_type (conditional (literal_bool, binary_bool_op (literal_bool, comparison (literal_int, literal_int)), comparison (literal_int, literal_int))) = type_bool
+val test_infer_type_10 = infer_type (binary_int_op (literal_int, literal_int)) = type_int
+val test_infer_type_11 = (infer_type (binary_int_op (literal_int, literal_bool)); false) handle TypeError => true = true
+val test_infer_type_12 = (infer_type (binary_bool_op (literal_int, literal_bool)); false) handle TypeError => true = true
+val test_infer_type_13 = (infer_type (comparison (literal_int, literal_bool)); false) handle TypeError => true = true
+val test_infer_type_14 = infer_type (conditional (binary_bool_op (literal_bool, literal_bool), literal_bool, comparison (literal_int, literal_int))) = type_bool
+val test_infer_type_15 = infer_type (conditional (comparison (literal_int, literal_int), literal_bool, comparison (literal_int, literal_int))) = type_bool
+val test_infer_type_16 = (infer_type (conditional (binary_int_op (literal_int, literal_int), literal_bool, comparison (literal_int, literal_int))); false) handle TypeError => true = true
+
 (** Back To The Future! 2 **)
 
 (* GCD -- Final Redux *)
