@@ -1,5 +1,4 @@
-(* 38 Cons Cells *)
-
+(** 38 Cons Cells **)
 fun length_of_a_list elems =
     let
         fun helper (counted, elems) =
@@ -39,17 +38,17 @@ fun number_passed grades =
 (* Pass/Fail -- 4 *)
 fun group_by_outcome grades =
     let
-        fun insert_id outcome id result =
+        fun insert_id (outcome, id, result) =
             case result of
                 [] => [(outcome, [id])]
               | (outcome', ids) :: rest =>
                     if outcome = outcome'
                         then (outcome, id :: ids) :: rest
-                        else (outcome', ids) :: insert_id outcome id rest
+                        else (outcome', ids) :: insert_id (outcome, id, rest)
         fun helper grades =
             case grades of
                 [] => []
-              | { id = id, grade = grade } :: grades => insert_id (pass_or_fail { id = id, grade = grade }) id (helper grades)
+              | { id = id, grade = grade } :: grades => insert_id (pass_or_fail { id = id, grade = grade }, id, helper grades)
         val result = helper grades
     in
         case result of

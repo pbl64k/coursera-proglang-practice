@@ -1,6 +1,6 @@
 (* All tests should evaluate to true. *)
 
-(* 38 Cons Cells *)
+(** 38 Cons Cells **)
 val test_length_of_a_list_1 = length_of_a_list [1] = 1
 val test_length_of_a_list_2 = length_of_a_list [] = 0
 val test_length_of_a_list_3 = length_of_a_list [[], [], [1, 2]] = 3
