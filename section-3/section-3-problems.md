@@ -34,7 +34,7 @@ list element.
 ### A Novel Approach
 
 Write a function `factorial` that takes an integer number
-$$n$$ and evaluates to $$n!$$. You function should be
+$$n$$ and evaluates to $$n!$$. Your function should be
 a composition of `unfold` and `List.foldl`. You should not
 use any other list functions, recursion or pattern matching.
 
@@ -100,7 +100,7 @@ integers, comparison operators and conditionals. Since we're
 only interested in types, and not in actually evaluating our
 expressions, we're omitting immaterial details, such as
 whether a literal boolean is "true" or "false", or whether
-an operator on integer is addition, subtraction or something
+an operator on integers is addition, subtraction or something
 else entirely.
 
 The types will be represented by the following simple
@@ -227,6 +227,6 @@ Trees** series of problems. Use `tree_fold` and/or
 
 (*) Problems contributed by Charilaos Skiadas.
 
-(**) And yes, that's a stupid title for a problem. Charilaos
+(\*\*) And yes, that's a stupid title for a problem. Charilaos
 had nothing to do with *that* part of it.
 
