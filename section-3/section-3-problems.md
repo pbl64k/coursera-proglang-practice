@@ -21,9 +21,9 @@ matching or any other list functions.
 
 Write a function `unfold` that takes a state transition
 function and an initial state and produces a list. On each
-step the current state is feed into a state transition
+step the current state is fed into the state transition
 function, which evaluates either to `NONE`, indicating that
-the result should contain no more elements, or `SOME`
+the result should contain no more elements, or to `SOME`
 $$pair$$, where $$pair$$ contains the next state and the next
 list element.
 
@@ -48,8 +48,8 @@ tail-recursive factorial implementation?
 ### Unforeseen Developments
 
 Write a function `unfold_map`, that behaves exactly as
-`List.map` and `fold_map`, but is implemented in terms of
-`unfold`.
+`List.map` and `fold_map`, but that would be implemented in
+terms of `unfold`.
 
 **SIGNATURE:** `val unfold_map = fn : ('a -> 'b) -> 'a list -> 'b list`
 
@@ -58,7 +58,7 @@ Write a function `unfold_map`, that behaves exactly as
 ### Deeper Into The Woods
 
 Let's reuse the binary tree data structure from practice
-problems for section 2:
+problems for Section 2:
 
     datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree }
 
@@ -94,8 +94,8 @@ type:
 
     datatype expr = literal_bool | literal_int | binary_bool_op of expr * expr | binary_int_op of expr * expr | comparison of expr * expr | conditional of expr * expr * expr
 
-The data constructor represent literal booleans, literal
-integers, binary operators on bools, binary operators on
+The data constructors represent literal booleans, literal
+integers, binary operators on booleans, binary operators on
 integers, comparison operators and conditionals. Since we're
 only interested in types, and not in actually evaluating our
 expressions, we're omitting immaterial details, such as
@@ -110,10 +110,10 @@ datatype:
 
 The typing rules for our expression language are simple:
 
-1. Literal booleans have are of type `type_bool`.
+1. Literal booleans are of type `type_bool`.
 2. Literal integers have type `type_int`.
 3. Boolean operators have type `type_bool` provided that both
-   operands also have type `type_bool`.
+   of their operands also have type `type_bool`.
 4. Integer operators have type `type_int` provided that both
    operands also have type `type_int`.
 5. Comparison operators have type `type_bool` provided that
@@ -136,7 +136,7 @@ cannot be determined according to the rules above, raise
 A few of the practice problems from Sections 1 and 2 can be
 rewritten more elegantly using the material from Section 3.
 All problem statements, **SIGNATURES** and **EXAMPLES** remain
-the same, if there are any additional considerations, these
+the same. If there are any additional considerations, these
 will be mentioned below. Only some of the potentially eligible
 problems are included -- naturally, you're welcome to rewrite
 the rest on your own, using similar approaches.
