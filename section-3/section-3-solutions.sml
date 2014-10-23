@@ -47,7 +47,7 @@ fun fixed_point f = do_until f (fn x => f x = x)
 (* Newton's Method *)
 fun my_sqrt n =
     let
-        fun fixed_point f x = do_until f (fn x => abs (f x - x) < 0.0001) x
+        fun fixed_point f = do_until f (fn x => abs (f x - x) < 0.0001)
     in
         fixed_point (fn x => 0.5 * (x + n / x)) n
     end
