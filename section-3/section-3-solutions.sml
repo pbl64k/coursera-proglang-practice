@@ -60,17 +60,21 @@ datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree 
 fun tree_fold f base t =
     case t of
         leaf => base
-      | node { value = value, left = left, right = right } => f (tree_fold f base left, value, tree_fold f base right)
+      | node { value = value, left = left, right = right } =>
+            f (tree_fold f base left, value, tree_fold f base right)
 
 fun tree_unfold f state =
     case f state of
         NONE => leaf
-      | SOME (lstate, value, rstate) => node { value = value, left = tree_unfold f lstate, right = tree_unfold f rstate }
+      | SOME (lstate, value, rstate) =>
+            node { value = value, left = tree_unfold f lstate, right = tree_unfold f rstate }
 
 (** A Grand Challenge **)
 
 (* provided definitions *)
-datatype expr = literal_bool | literal_int | binary_bool_op of expr * expr | binary_int_op of expr * expr | comparison of expr * expr | conditional of expr * expr * expr
+datatype expr = literal_bool | literal_int |
+    binary_bool_op of expr * expr | binary_int_op of expr * expr |
+    comparison of expr * expr | conditional of expr * expr * expr
 datatype expr_type = type_bool | type_int
 
 exception TypeError
@@ -139,7 +143,8 @@ val add_all_opt =
 val alternate = #2 o (List.foldl (fn (x, (factor, acc)) => (~factor, factor * x + acc)) (1, 0))
 
 (* Minimum/Maximum -- Final Redux *)
-fun min_max (x :: xs) = List.foldl (fn (x, (min, max)) => (if x < min then x else min, if x > max then x else max)) (x, x) xs
+fun min_max (x :: xs) = List.foldl (fn (x, (min, max)) =>
+    (if x < min then x else min, if x > max then x else max)) (x, x) xs
 
 (* Lists And Tuples, Oh My! -- Final Redux *)
 fun unzip xs = List.foldr (fn ((x, y), (xs, ys)) => (x :: xs, y :: ys)) ([], []) xs
