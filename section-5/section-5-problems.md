@@ -1,7 +1,7 @@
 # Practice Problems for Section 5
 
 **NOTE:** You do not need to handle corner cases, particularly
-receiving arguments of the wront type, unless explicitly asked
+receiving arguments of the wrong type, unless explicitly asked
 to do that in the problem statement.
 
 ## Warm Up
@@ -80,7 +80,7 @@ You may try to do that as a challenge.)
 
 We'll revisit the **Newton's Method** problem from Section 3,
 but instead of returning a single result we will produce an
-infinite stream of approximation.
+infinite stream of approximations.
 
 Write a function `sqrt-stream` that takes a number $$n$$,
 starts with $$n$$ as an initial guess in the stream, and
