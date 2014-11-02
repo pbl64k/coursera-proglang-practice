@@ -7,9 +7,6 @@ list (`'a list`) and evaluates to its length as an integer
 number. Use pattern matching instead of list functions. Your
 function should be tail-recursive.
 
-**NOTE:** Whether your function is tail recursive or not will
-not be checked by provided tests.
-
 **SIGNATURE:** `val length_of_a_list = fn : 'a list -> int`
 
 **EXAMPLE:** `length_of_a_list [1] = 1`
@@ -38,6 +35,7 @@ with no grade are considered to have failed the class. Your
 function should evaluate to a value of type `pass_fail`. You
 may assume that the grade is correct (that is, in the
 specified range), and you do not need to validate the input.
+Use pattern matching instead of option functions.
 
 **NOTE:** Your signature may be a little different.
 
@@ -50,7 +48,8 @@ specified range), and you do not need to validate the input.
 Write a function `has_passed` that takes a `final_grade` and
 evaluates to a `bool` indicating whether the given student has
 passed the class. The rules for determining that are the same
-as in the previous problem.
+as in the previous problem. Use pattern matching instead of
+option functions.
 
 **HINT:** You might want to use `pass_or_fail` here.
 
@@ -68,6 +67,7 @@ list who have passed the class. The rules for determining that
 are still the same. You do not need to check whether all of
 the student IDs on the list are unique (though you may treat
 adding that to your implementation as a challenge problem).
+Use pattern matching instead of list functions.
 
 **NOTE:** Your signature may be a little different.
 
@@ -92,7 +92,7 @@ second element. Once again, the IDs must be in the same
 relative order as in the original list. Additionally, if there
 are both passing and failing students on the original list,
 the resulting list should contain `(pass, ...)` before
-`(fail, ...)`.
+`(fail, ...)`. As usual, use pattern matching.
 
 **NOTE:** Your signature may be a little different.
 

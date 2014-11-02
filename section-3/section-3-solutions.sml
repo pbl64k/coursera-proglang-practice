@@ -143,6 +143,9 @@ val add_all_opt =
 val alternate = #2 o (List.foldl (fn (x, (factor, acc)) => (~factor, factor * x + acc)) (1, 0))
 
 (* Minimum/Maximum -- Final Redux *)
+
+(* Non-exhaustive match in function definition is okay here -- *)
+(* min_max is not well-defined for empty lists. *)
 fun min_max (x :: xs) = List.foldl (fn (x, (min, max)) =>
     (if x < min then x else min, if x > max then x else max)) (x, x) xs
 

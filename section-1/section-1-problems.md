@@ -83,8 +83,8 @@ on the list are positive.
 Write a function `any_divisible_by` that takes a list of
 integers and a divisor (an integer number) and evaluates to
 either `true` or `false`. The function should evaluate to
-`true` if any of the numbers on the list are divisible by the
-function's second argument.
+`true` if and only if there exists an element of the list that
+is divisible by the function's second argument.
 
 **SIGNATURE:** `val any_divisible_by = fn : int list * int -> bool`
 
@@ -116,10 +116,10 @@ at least one of the two arguments is `NONE`.
 
 ## Quirky Addition -- Continued (*)
 
-Write a function `add_all_opt` option that given a list of
-"optional" integers, adds those integers that are there (i.e.
-adds all the `SOME i`). If the list does not contain any `SOME`
-is in it, i.e. they are all `NONE` or the list is empty, the
+Write a function `add_all_opt` that given a list of "optional"
+integers, adds those integers that are there (i.e. adds all
+the `SOME i`). If the list does not contain any `SOME` is in
+it, i.e. they are all `NONE` or the list is empty, the
 function should evaluate to NONE.
 
 **HINT:** It probably wouldn't make sense to use `add_opt` for
@@ -187,7 +187,7 @@ completes.
 
 ## Lists And Tuples, Oh My! -- Continued (3) (*)
 
-Write a version `zip_opt` of `zip` that should evaluate to a
+Write a version `zip_opt` of `zip` that should evaluate to
 `SOME` list when the original lists have the same length, and
 to `NONE` if they do not.
 
