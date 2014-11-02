@@ -101,7 +101,7 @@ Write a macro `perform` that has the following two forms:
 `e1` should be evaluated (once) depending on the result of
 evaluating `e2` -- only if `e2` evaluates to `#f` in the
 latter case, and only if it doesn't in the former case. If
-`e1` is never evaluates, the entire expression should
+`e1` is never evaluated, the entire expression should
 evaluate to `e2`. Neither `e1` nor `e2` should be evaluated
 more than once in any case.
 
