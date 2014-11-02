@@ -49,6 +49,19 @@
       (cons (car pair) (helper ys (cdr pair)))))
   (helper xs ys))
 
+;; Not These Guys Again ;;
+
+;; Stream of natural numbers starting with 1, as defined using string-maker in the reading notes
+(define nats (stream-maker + 1))
+
+(define (stream-factorial n)
+  (define (helper acc stream)
+    (define pair (stream))
+    (if (< n (car pair))
+        acc
+        (helper (* acc (car pair)) (cdr pair))))
+  (helper 1 nats))
+
 ;; More Bananas ;;
 (define (repeats string)
   (stream-maker string-append string))

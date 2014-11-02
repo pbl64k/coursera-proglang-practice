@@ -37,7 +37,12 @@ second to last elements of the original list, etc.
 ## Streams
 
 We're going to use the same definition of streams here as in
-the lectures and in the homework assignment.
+the lectures and in the homework assignment. There are no
+examples in this sub-section, as providing useful examples
+would require defining some extra stream functions -- which
+you should do on your own for practice! If you really want to
+see some examples, take a peek at provided tests, but beware
+of **SPOILERS**!
 
 **HINT:** You may want to scour the reading notes for useful
 stream functions. Yes, using stuff found in the class
@@ -64,6 +69,24 @@ element of `xs` etc. For example,
 `(interleave fibonacci undecided)` would evaluate to a stream
 the elements of which would be, in order: `0`, `#t`, `1`,
 `#f`, `1`, `#t`, `2`, `#f`...
+
+### Not These Guys Again
+
+Ni!!! We want... another factorial. Recall **A Novel
+Approach** problem from Section 3. The unfortunate issue with
+that implementation of factorial function was that is used up
+extra $$O(n)$$ space due to explicit building of a list of all
+numbers from $$1$$ to $$n$$.
+
+Write a function `stream-factorial` that will compute the
+factorial by multiplying the numbers from the infinite stream
+of all natural numbers, in $$O(1)$$ space.
+
+**HINT:** You may want to borrow an implementation of an
+infinite stream of natural numbers from class materials. Or
+you could write your own from scratch for extra practice.
+
+**EXAMPLE:** `(stream-factorial 4)` evaluates to `24`
 
 ### More Bananas
 

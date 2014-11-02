@@ -10,14 +10,15 @@
 (require rackunit)
 (require rackunit/text-ui)
 
-;; Some helpers for testing streams
+;; Some helpers for testing streams ;;
+
 (define (stream-ith stream n)
   (define pair (stream))
   (if (zero? n)
       (car pair)
       (stream-ith (cdr pair) (sub1 n))))
 
-(define (nats)
+(define (test-nats)
   (define (nums n)
     (lambda () (cons n (nums (add1 n)))))
   ((nums 1)))
@@ -37,7 +38,8 @@
    
    ;; Another Shrubbery! ;;
    
-   ;; NOTE: tests do not verify that your solution is actually tail-recursive.
+   ;; NOTE: These tests do not verify that your solution is tail-recursive. ;;
+   ;; You should do that yourself! ;;
    
    (check-equal? (tr-factorial 4) 24 "tr-factorial test #1")
    (check-equal? (tr-factorial 0) 1 "tr-factorial test #2")
@@ -75,12 +77,24 @@
    (check-equal? (stream-ith (interleave fibonacci undecided) 3) #f "interleave test #2")
    (check-equal? (stream-ith (interleave fibonacci undecided) 8) 3 "interleave test #3")
    (check-equal? (stream-ith (interleave fibonacci undecided) 9) #t "interleave test #4")
-   (check-equal? (stream-ith (interleave nats nats) 0) 1 "interleave test #5")
-   (check-equal? (stream-ith (interleave nats nats) 1) 1 "interleave test #6")
-   (check-equal? (stream-ith (interleave nats nats) 2) 2 "interleave test #7")
-   (check-equal? (stream-ith (interleave nats nats) 3) 2 "interleave test #8")
-   (check-equal? (stream-ith (interleave nats nats) 4) 3 "interleave test #9")
+   (check-equal? (stream-ith (interleave test-nats test-nats) 0) 1 "interleave test #5")
+   (check-equal? (stream-ith (interleave test-nats test-nats) 1) 1 "interleave test #6")
+   (check-equal? (stream-ith (interleave test-nats test-nats) 2) 2 "interleave test #7")
+   (check-equal? (stream-ith (interleave test-nats test-nats) 3) 2 "interleave test #8")
+   (check-equal? (stream-ith (interleave test-nats test-nats) 4) 3 "interleave test #9")
    
+   ;; Not These Guys Again ;;
+
+   ;; NOTE: These tests do not verify that your solution ;;
+   ;; uses the suggested approach to implementation. ;;
+   ;; You should do that yourself! ;;
+
+   (check-equal? (stream-factorial 4) 24 "stream-factorial test #1")
+   (check-equal? (stream-factorial 0) 1 "stream-factorial test #2")
+   (check-equal? (stream-factorial 1) 1 "stream-factorial test #3")
+   (check-equal? (stream-factorial 5) 120 "stream-factorial test #4")
+   (check-equal? (stream-factorial 7) 5040 "stream-factorial test #5")
+
    ;; More Bananas ;;
    (check-equal? (stream-ith (repeats "banana") 0) "banana" "repeats test #1")
    (check-equal? (stream-ith (repeats "banana") 1) "bananabanana" "repeats test #2")
@@ -98,7 +112,9 @@
    
    ;; Perl Style ;;
    
-   ;; NOTE: the tests do not verify proper evaluation semantics wrt side effects.
+   ;; NOTE: These tests do not verify that your solution has ;;
+   ;; proper evaluation semantics with respect to side effects. ;;
+   ;; You should do that yourself! ;;
    
    (check-equal? (perform #t unless #f) #t "perform test #1")
    (check-equal? (perform #t if #f) #f "perform test #2")
