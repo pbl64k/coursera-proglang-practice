@@ -48,7 +48,8 @@ fun group_by_outcome grades =
         fun helper grades =
             case grades of
                 [] => []
-              | { id = id, grade = grade } :: grades => insert_id (pass_or_fail { id = id, grade = grade }, id, helper grades)
+              | { id = id, grade = grade } :: grades =>
+                    insert_id (pass_or_fail { id = id, grade = grade }, id, helper grades)
         val result = helper grades
     in
         case result of
