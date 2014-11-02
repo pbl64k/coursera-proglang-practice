@@ -6,8 +6,7 @@
 ;; Make sure it starts with:
 ;;     #lang racket
 ;;     (provide (all-defined-out))
-;(require "Put the name of the file with your solutions here")
-(require "section-5-solutions.rkt")
+(require "Put the name of the file with your solutions here")
 (require rackunit)
 (require rackunit/text-ui)
 
