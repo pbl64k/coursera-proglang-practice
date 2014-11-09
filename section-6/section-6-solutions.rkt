@@ -25,11 +25,11 @@
 (define (gardener t)
   (btree-unfold
    (lambda (t)
-     (if (or (btree-leaf? t) (not (btree-node-value t)))
-         #f
-         (cons (btree-node-value t)
-               (cons (btree-node-left t)
-                     (btree-node-right t)))))
+     (and (not (btree-leaf? t))
+          (btree-node-value t)
+          (cons (btree-node-value t)
+                (cons (btree-node-left t)
+                      (btree-node-right t)))))
    t))
 
 ;;; So Dynamic ;;;
@@ -68,7 +68,7 @@
 ;;; Lambda Madness ;;;
 
 ;; provided definitions
-;; MUPL structs from Section 5 homework assignment in Programming Languages class
+;; MUPL structs from Section 6 homework assignment in Programming Languages class
 (struct var  (string) #:transparent)  ;; a variable, e.g., (var "foo")
 (struct int  (num)    #:transparent)  ;; a constant number, e.g., (int 17)
 (struct add  (e1 e2)  #:transparent)  ;; add two expressions
@@ -107,4 +107,3 @@
         [(isaunit? e)
          (isaunit (simplify (isaunit-e e)))]
         [else e]))
-        

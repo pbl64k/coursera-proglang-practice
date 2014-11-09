@@ -15,7 +15,7 @@ definitions:
     (struct btree-node (value left right) #:transparent)
 
 Write functions `btree-fold` and `btree-unfold` that implement
-folding and unfolding on this data structures. These functions
+folding and unfolding on these data structures. These functions
 should behave as described in Section 3 problem **Deeper Into
 The Woods**.
 
@@ -28,18 +28,18 @@ the initial value for leaves, and the third should be the tree
 to fold over.
 
 The first argument to `btree-unfold` should be a function that
-takes the current state as the argument and produces either
-`#f` (to generate an empty list), or a cons cell, such that
-its `car` is the value for the new node, and the `cdr` is
-another cons cell containing states for recursive calls for
-left and right subtrees in `car` and `cdr` correspondingly.
+takes the current state as its argument and produces either
+`#f` (to generate a leaf), or a cons cell, such that its `car`
+is the value for the new node, and the `cdr` is another cons
+cell containing states for recursive calls for left and right
+subtrees in `car` and `cdr` correspondingly.
 
 Now use one of the functions you just implemented to write a
-function called `gardener`. `gardened` should take a single
+function called `gardener`. `gardener` should take a single
 argument, a binary tree, and evaluate to a new binary tree,
-similar to the original one, but with all nodes the value of
-which is `#f` pruned together with all their descendants. The
-behavior is similar (but not identical) to the `gardener`
+similar to the original one, but with all the nodes the value
+of which is `#f` pruned together with all their descendants.
+The behavior is similar (but not identical) to the `gardener`
 function from the **Forest For The Trees -- 3** problem in
 Section 2.
 
@@ -56,14 +56,14 @@ following numbers in a list instead of `+`. You may assume
 that the list is non-empty, that it contains only numbers and
 binary functions suitable for operating on two numbers. First
 element of the given list will always be a number rather than
-a function.
+a function. Consider all the functions used to be associative.
 
 **HINT:** Check out the `procedure?` predicate.
 
 **EXAMPLE:** `(crazy-sum (list 10 * 6 / 5 - 3))` evaluates to `9`
 
 **NOTE:** While it may superficially look like the function
-implements prefix syntax for arithmetic expressions, that's
+implements infix syntax for arithmetic expressions, that's
 not really the case.
 
 ### Universal Fold
@@ -71,7 +71,7 @@ not really the case.
 Write a function `universal-fold` that takes a function, an
 initial value and a data structure. `universal-fold` should
 behave like `foldr` if the data structure passed to it is a
-list, and as a `btree-fold` otherwise. Implement a function
+list, and as a `btree-fold` otherwise. Write a function
 `universal-sum` that sums all the elements contained in a
 given data structure in terms of `universal-fold`.
 
@@ -79,8 +79,8 @@ given data structure in terms of `universal-fold`.
 
 Write a function `flatten` that accepts a list and flattens
 its internal structure, merging all the lists inside into a
-single flat list. This should work for lists nested
-arbitrarily deep.
+single flat list. This should work for lists nested to
+arbitrary depth.
 
 **EXAMPLE:** `(flatten (list 1 2 (list (list 3 4) 5 (list (list 6) 7 8)) 9 (list 10)))`
 should evaluate to `(list 1 2 3 4 5 6 7 8 9 10)`
@@ -100,7 +100,7 @@ like booleans and numbers.
 
 Nonetheless, untyped lambda calculus is Turing-complete, so
 we can actually represent things like numbers and booleans
-using nothing but function. In this problem we'll do some of
+using nothing but functions. In this problem we'll do some of
 that in MUPL. We'll leave numbers and `aunit` alone, but
 we'll express `mlet` and MUPL pairs in terms of functions.
 Namely:
@@ -117,13 +117,13 @@ definitions for `fst` and `snd` be. If you need to introduce
 any names, use `_x` and `_y` (with `_x` introduced first). You
 shouldn't need more than two names. Note that we're being
 unhygienic, be we're not going to bother generatic safe names
-instead of `_f`.
+instead.
 
 Write a function `simplify` that accepts a MUPL program as
 an argument and produces an equivalent program without `mlet`,
 `apair`, `fst` or `snd`.
 
 **NOTE:** You'll need to copy the definitions of structs for
-representing MUPL programs from code provided in this
+representing MUPL programs from the code provided in this
 section's homework assignment.
 
