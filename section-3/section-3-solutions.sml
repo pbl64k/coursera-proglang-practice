@@ -52,7 +52,7 @@ fun my_sqrt n =
         fixed_point (fn x => 0.5 * (x + n / x)) n
     end
 
-(* Deeper into the woods *)
+(* Deeper Into The Woods *)
 
 (* provided definition *)
 datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree }
