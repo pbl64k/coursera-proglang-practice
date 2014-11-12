@@ -90,8 +90,8 @@ should evaluate to `(list 1 2 3 4 5 6 7 8 9 10)`
 Like Racket itself, MUPL (the programming language from this
 section's homework assignment) is essentially a superset of
 untyped lambda calculus. "Lambda calculus" may sound scary,
-but it's essentially a *very* simple programming language --
-it really doesn't have anything in it, apart from function
+but it's really just a *very* simple programming language --
+it doesn't have anything in it, apart from function
 expressions and function application! Of course, that makes
 it very inconvenient to program in, which is also why real
 programming languages usually supply all sorts of bells and
@@ -116,7 +116,7 @@ Try to figure out how does this work, and what should the
 definitions for `fst` and `snd` be. If you need to introduce
 any names, use `_x` and `_y` (with `_x` introduced first). You
 shouldn't need more than two names. Note that we're being
-unhygienic, be we're not going to bother generatic safe names
+unhygienic, be we're not going to bother generating safe names
 instead.
 
 Write a function `simplify` that accepts a MUPL program as
