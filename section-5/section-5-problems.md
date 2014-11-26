@@ -74,7 +74,7 @@ the elements of which would be, in order: `0`, `#t`, `1`,
 
 Ni!!! We want... another factorial. Recall **A Novel
 Approach** problem from Section 3. The unfortunate issue with
-that implementation of factorial function was that is used up
+that implementation of factorial function was that it used up
 extra $$O(n)$$ space due to explicit building of a list of all
 numbers from $$1$$ to $$n$$.
 
