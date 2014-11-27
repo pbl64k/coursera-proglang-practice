@@ -1,5 +1,7 @@
 ## Provided code for Guess The Word practice problem (section 7)
 
+## Targets 1.9.3
+
 class GuessTheWordGame
   def initialize secret_word_class
     @secret_word_class = secret_word_class
@@ -93,6 +95,4 @@ class SecretWord
     found
   end
 end
-
-GuessTheWordGame.new(SecretWord).play
 
