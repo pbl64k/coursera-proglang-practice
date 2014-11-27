@@ -5,8 +5,8 @@
 We'll toy a bit with a simple word guessing game (known under
 the rather morbid name of "Hangman"). Our implementation has a
 simple text-based interface, and doesn't aim to be fully
-playable (it doesn't make much effort to hide the secret word
-or phrase from the player, for example).
+playable -- it doesn't make much effort to hide the secret
+word or phrase from the player, for example.
 
 Save the provided code implementing a particularly half-baked
 version of the game in a file named `section-7-provided.rb`,
@@ -38,41 +38,41 @@ the guesses to lower or upper case -- that's not neat.
 ### Forgive Repeated Guesses
 
 Player may try to guess the same letter absent from the secret
-phrase twice. The current implementation will consider both
-guesses to be incorrect, and reduce the number of remaining
-attempt accordingly. Change the game so that repeated guesses
-are rejected as invalid instead.
+phrase multiple times. The current implementation will
+consider all such guesses to be incorrect, and reduce the
+number of remaining attempts accordingly. Change the game so
+that repeated guesses are rejected as invalid instead.
 
 **EXAMPLE:** After implementing all the changes described
 above, a sample game session could look as follows:
 
     Welcome to Guess The Word!
     Enter the secret word of phrase:
-    Alas, poor Yorick.
+    Alas, poor Yorick!
     Secret word:
-    ----, ---- ------.
+    ----, ---- ------!
     9 incorrect guess(es) left.
     Enter the letter you want uncovered:
     A
     Secret word:
-    A-a-, ---- ------.
+    A-a-, ---- ------!
     9 incorrect guess(es) left.
     Enter the letter you want uncovered:
     y
     Secret word:
-    A-a-, ---- Y-----.
+    A-a-, ---- Y-----!
     9 incorrect guess(es) left.
     Enter the letter you want uncovered:
     a
     I'm sorry, but that's not a valid letter.
     Secret word:
-    A-a-, ---- Y-----.
+    A-a-, ---- Y-----!
     9 incorrect guess(es) left.
     Enter the letter you want uncovered:
     ,
     I'm sorry, but that's not a valid letter.
     Secret word:
-    A-a-, ---- Y-----.
+    A-a-, ---- Y-----!
     9 incorrect guess(es) left.
 
 etc.
