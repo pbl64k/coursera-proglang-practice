@@ -12,13 +12,15 @@ datatype encounter =
   | potion of int * int (* potions may restore some hitpoints and some mana points (if applicable) *)
   | armor of int (* armor pieces may boost a characters armor points (if applicable) *)
 
+type dungeon = encounter list
+
 fun is_dead character =
     case character of
         knight (hp, _) => hp <= 0
         (* this is something of a dirty hack, as it simplifies the encounter mechanics below
            at the cost of wizard state being slightly crazy after a lethal encounter with a
            monster *)
-      | wizard (hp, mp) => hp <= 0 orelse mp <= 0
+      | wizard (hp, mp) => hp <= 0 orelse mp < 0
 
 fun damage_knight dam (hp, ap) =
     case ap of
@@ -54,10 +56,43 @@ fun resolve_encounter character encounter =
         then character (* dead characters have already done all their adventuring... *)
         else play_out_encounter character encounter
 
+(* produces no side effects, but might be useful for testing *)
+val compute_final_outcome = List.foldl (fn (x, y) => resolve_encounter y x)
+
+fun print_char character =
+    case character of
+        knight (hp, ap) => print ("HP: " ^ Int.toString hp ^ " AP: " ^ Int.toString ap ^ "\n")
+      | wizard (hp, mp) => print ("HP: " ^ Int.toString hp ^ " MP: " ^ Int.toString mp ^ "\n")
+
+fun print_enc encounter =
+    case encounter of
+        floor_trap dam => print ("A deadly floor trap dealing " ^ Int.toString dam ^
+            " point(s) of damage lies ahead!\n")
+      | monster (dam, hp) => print ("A horrible monster lurks in the shadows ahead. It can attack for " ^
+            Int.toString dam ^ " point(s) of damage and has " ^ Int.toString hp ^ " hitpoint(s).\n")
+      | potion (hp, mp) => print ("There is a potion here that can restore " ^ Int.toString hp ^
+            " hitpoint(s) and " ^ Int.toString mp ^ " mana point(s).\n")
+      | armor ap => print ("A shiny piece of armor, rated for " ^ Int.toString ap ^
+            " AP, is gathering dust in an alcove!\n")
+
+(* tells a story of a given hero trying to storm a dungeon represented as a list of
+   sequential encounters *)
+fun play_out_adventure character dungeon =
+    if is_dead character
+        then (print "Alas, the hero is dead.\nThe adventure ends here.\n"; character)
+        else (print_char character;
+            case dungeon of
+                [] => (print "The hero emerges victorious!\nTheir adventures are over...\nFOR NOW.\n"; character)
+              | (encounter :: rest_of_the_dungeon) => (print_enc encounter;
+                    play_out_adventure (resolve_encounter character encounter) rest_of_the_dungeon))
+
+(* some heroes and dungeons to try out for your enjoyment *)
+
 val sir_foldalot = knight (15, 3)
 val knight_of_lambda_calculus = knight (10, 10)
 val sir_pinin_for_the_fjords = knight (0, 15)
 val alonzo_the_wise = wizard (3, 50)
+val dhuwe_the_unready = wizard (8, 5)
 
 val dungeon_of_mupl = [
     monster (1, 1),
@@ -68,5 +103,19 @@ val dungeon_of_mupl = [
     armor 10,
     floor_trap 5,
     monster (10, 10)
+    ]
+val the_dark_castle_of_proglang = [
+    potion (3, 3),
+    monster (1, 1),
+    monster (2, 2),
+    monster (4, 4),
+    floor_trap 3,
+    potion (3, 3),
+    monster (4, 4),
+    monster (8, 8),
+    armor 5,
+    monster (3, 5),
+    monster (6, 6),
+    floor_trap 5
     ]
 
