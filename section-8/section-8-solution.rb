@@ -23,6 +23,7 @@ class Character
 
   def play_out_encounter enc
     ## YOUR CODE HERE
+    enc.redispatch_to self
   end
 end
 
@@ -37,6 +38,38 @@ class Knight < Character
   end
 
   ## YOUR CODE HERE
+
+  def resolve_floor_trap floor_trap
+    take_damage floor_trap.dam
+  end
+
+  def resolve_monster monster
+    take_damage monster.dam
+  end
+
+  def resolve_potion potion
+    @hp += potion.hp
+  end
+
+  def resolve_armor armor
+    @ap += armor.ap
+  end
+
+  private
+
+  def take_damage dam
+    if @ap == 0
+      @hp -= dam
+    else
+      if dam > @ap
+        ap = @ap
+        @ap = 0
+        take_damage(dam - ap)
+      else
+        @ap -= dam
+      end
+    end
+  end
 end
 
 class Wizard < Character
@@ -50,6 +83,30 @@ class Wizard < Character
   end
 
   ## YOUR CODE HERE
+
+  def is_dead?
+    super || @mp < 0
+  end
+
+  def resolve_floor_trap floor_trap
+    if @mp > 0
+      @mp -= 1
+    else
+      @hp -= floor_trap.dam
+    end
+  end
+
+  def resolve_monster monster
+    @mp -= monster.hp
+  end
+
+  def resolve_potion potion
+    @hp += potion.hp
+    @mp += potion.mp
+  end
+
+  def resolve_armor armor
+  end
 end
 
 class FloorTrap < Encounter
@@ -64,6 +121,9 @@ class FloorTrap < Encounter
   end
 
   ## YOUR CODE HERE
+  def redispatch_to char
+    char.resolve_floor_trap self
+  end
 end
 
 class Monster < Encounter
@@ -81,6 +141,9 @@ class Monster < Encounter
   end
 
   ## YOUR CODE HERE
+  def redispatch_to char
+    char.resolve_monster self
+  end
 end
 
 class Potion < Encounter
@@ -97,6 +160,9 @@ class Potion < Encounter
   end
 
   ## YOUR CODE HERE
+  def redispatch_to char
+    char.resolve_potion self
+  end
 end
 
 class Armor < Encounter
@@ -112,6 +178,9 @@ class Armor < Encounter
   end
 
   ## YOUR CODE HERE
+  def redispatch_to char
+    char.resolve_armor self
+  end
 end
 
 Adventure.new(Stdout.new, Knight.new(15, 3),
