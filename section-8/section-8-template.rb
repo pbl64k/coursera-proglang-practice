@@ -114,13 +114,15 @@ class Armor < Encounter
   ## YOUR CODE HERE
 end
 
-Adventure.new(Stdout.new, Knight.new(15, 3),
-  [Monster.new(1, 1),
-  FloorTrap.new(1),
-  Monster.new(5, 3),
-  Potion.new(5, 5),
-  Monster.new(1, 15),
-  Armor.new(10),
-  FloorTrap.new(5),
-  Monster.new(10, 10)]).play_out
+if __FILE__ == $0
+  Adventure.new(Stdout.new, Knight.new(15, 3),
+    [Monster.new(1, 1),
+    FloorTrap.new(1),
+    Monster.new(5, 3),
+    Potion.new(5, 5),
+    Monster.new(1, 15),
+    Armor.new(10),
+    FloorTrap.new(5),
+    Monster.new(10, 10)]).play_out
+end
 
