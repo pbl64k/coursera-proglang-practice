@@ -117,7 +117,7 @@ end
 if __FILE__ == $0
   Adventure.new(Stdout.new, Knight.new(15, 3),
     [Monster.new(1, 1),
-    FloorTrap.new(1),
+    FloorTrap.new(3),
     Monster.new(5, 3),
     Potion.new(5, 5),
     Monster.new(1, 15),
