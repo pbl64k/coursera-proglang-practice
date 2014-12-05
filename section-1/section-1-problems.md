@@ -235,11 +235,10 @@ second argument is non-negative.
 
 ## BananaBanana -- Continued (Again) (*)
 
-Write a function `repeats_list` that given a list of integers
-and another list of nonnegative integers, repeats the integers
-in the first list according to the numbers indicated by the
-second list. You may assume that both lists have the same
-length.
+Write a function `repeats_list` that given a list of strings
+and a list of nonnegative integers, repeats the strings in the
+first list according to the numbers indicated by the second
+list. You may assume that both lists have the same length.
 
 **SIGNATURE:** `val repeats_list = fn : string list * int list -> string list`
 
