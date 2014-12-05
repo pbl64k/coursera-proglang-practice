@@ -38,8 +38,8 @@
    
    ;; Another Shrubbery! ;;
    
-   ;; NOTE: These tests do not verify that your solution is tail-recursive. ;;
-   ;; You should do that yourself! ;;
+   ;; NOTE: These tests do not verify that your solution is tail-recursive.
+   ;; You should do that yourself!
    
    (check-equal? (tr-factorial 4) 24 "tr-factorial test #1")
    (check-equal? (tr-factorial 0) 1 "tr-factorial test #2")
@@ -85,9 +85,9 @@
    
    ;; Not These Guys Again ;;
 
-   ;; NOTE: These tests do not verify that your solution ;;
-   ;; uses the suggested approach to implementation. ;;
-   ;; You should do that yourself! ;;
+   ;; NOTE: These tests do not verify that your solution
+   ;; uses the suggested approach to implementation.
+   ;; You should do that yourself!
 
    (check-equal? (stream-factorial 4) 24 "stream-factorial test #1")
    (check-equal? (stream-factorial 0) 1 "stream-factorial test #2")
@@ -112,9 +112,9 @@
    
    ;; Perl Style ;;
    
-   ;; NOTE: These tests do not verify that your solution has ;;
-   ;; proper evaluation semantics with respect to side effects. ;;
-   ;; You should do that yourself! ;;
+   ;; NOTE: These tests do not verify that your solution has
+   ;; proper evaluation semantics with respect to side effects.
+   ;; You should do that yourself!
    
    (check-equal? (perform #t unless #f) #t "perform test #1")
    (check-equal? (perform #t if #f) #f "perform test #2")
