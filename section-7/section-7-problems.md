@@ -37,11 +37,12 @@ the guesses to lower or upper case -- that's not neat.
 
 ### Forgive Repeated Guesses
 
-Player may try to guess the same letter absent from the secret
-phrase multiple times. The current implementation will
-consider all such guesses to be incorrect, and reduce the
-number of remaining attempts accordingly. Change the game so
-that repeated guesses are rejected as invalid instead.
+Player may try to guess the same letter (whether present or
+absent from the secret phrase) multiple times. The current
+implementation will reduce the number of remaining attempts
+for all incorrect attempts, even repeated ones, and will not
+not mind the repeated correct guesses. Change the game so that
+repeated guesses are rejected as invalid instead.
 
 **EXAMPLE:** After implementing all the changes described
 above, a sample game session could look as follows:
