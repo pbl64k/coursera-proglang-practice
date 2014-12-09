@@ -118,7 +118,7 @@ at least one of the two arguments is `NONE`.
 
 Write a function `add_all_opt` that given a list of "optional"
 integers, adds those integers that are there (i.e. adds all
-the `SOME i`). If the list does not contain any `SOME` is in
+the `SOME i`). If the list does not contain any `SOME` in
 it, i.e. they are all `NONE` or the list is empty, the
 function should evaluate to NONE.
 
@@ -132,7 +132,7 @@ this.
 ## Flip Flop (*)
 
 Write a function `alternate` that takes a list of numbers and
-adds them with alternating sign, so the result of applying this
+adds them with alternating sign. The result of applying this
 function to `[1, 2, 3, 4]` should be `1 - 2 + 3 - 4 = ~2`.
 
 **SIGNATURE:** `val alternate = fn : int list -> int`

@@ -146,11 +146,13 @@ val test_greeting_3 = greeting NONE = "Hello there, you!"
 (* BananaBanana -- Continued *)
 val test_repeats_1 = repeats ("banana", 2) = ["banana", "bananabanana"]
 val test_repeats_2 = repeats ("banana", 0) = []
-val test_repeats_3 = repeats ("banana", 4) = ["banana", "bananabanana", "bananabananabanana", "bananabananabananabanana"]
+val test_repeats_3 = repeats ("banana", 4) =
+    ["banana", "bananabanana", "bananabananabanana", "bananabananabananabanana"]
 val test_repeats_4 = repeats ("a", 5) = ["a", "aa", "aaa", "aaaa", "aaaaa"]
 
 (* BananaBanana -- Continued (Again) *)
-val test_repeats_list_1 = repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]
+val test_repeats_list_1 = repeats_list (["abc", "def", "ghi"], [4, 0, 3]) =
+    ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]
 val test_repeats_list_2 = repeats_list ([], []) = []
 val test_repeats_list_3 = repeats_list (["a"], [10]) = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
 

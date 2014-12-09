@@ -158,7 +158,8 @@ val test_unzip_2 = unzip [] = ([], [])
 val test_unzip_3 = unzip [(123, 321), (321, 123)] = ([123, 321], [321, 123])
 
 (* BBCA -- Redux *)
-val test_repeats_list_1 = repeats_list (["abc", "def", "ghi"], [4, 0, 3]) = ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]
+val test_repeats_list_1 = repeats_list (["abc", "def", "ghi"], [4, 0, 3]) =
+    ["abc", "abc", "abc", "abc", "ghi", "ghi", "ghi"]
 (* causes polyEqual warning if repeats_list has a polymorphic type -- that's ok *)
 val test_repeats_list_2 = repeats_list ([], []) = []
 val test_repeats_list_3 = repeats_list (["a"], [10]) = ["a", "a", "a", "a", "a", "a", "a", "a", "a", "a"]
