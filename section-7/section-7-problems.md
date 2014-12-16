@@ -48,7 +48,7 @@ repeated guesses are rejected as invalid instead.
 above, a sample game session could look as follows:
 
     Welcome to Guess The Word!
-    Enter the secret word of phrase:
+    Enter the secret word or phrase:
     Alas, poor Yorick!
     Secret word:
     ----, ---- ------!

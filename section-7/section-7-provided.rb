@@ -36,7 +36,7 @@ class GuessTheWordGame
   end
 
   def ask_for_secret_word
-    puts "Enter the secret word of phrase:"
+    puts "Enter the secret word or phrase:"
     word = gets.chomp
     if is_valid_secret_word? word
       @secret_word_entered = true
