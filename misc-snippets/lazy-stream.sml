@@ -158,11 +158,7 @@ functor LazyStream (structure L : LAZY) :> STREAM = struct
         in
             (x #:: (fn () => #1 (L.force accp)), y #:: (fn () => #2 (L.force accp)))
         end
-    fun unzip xs =
-        let
-        in
-            fold unzip_folder (empty, empty) xs
-        end
+    fun unzip xs = fold unzip_folder (empty, empty) xs
     fun cycle_unfolder init fxs =
         let
             val xs = fxs ()
