@@ -1,4 +1,4 @@
-(** High-Order Fun **)
+(** Higher-Order Fun **)
 
 (* There Can Be Only One *)
 

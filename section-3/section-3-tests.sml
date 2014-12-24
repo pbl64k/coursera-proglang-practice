@@ -1,10 +1,10 @@
 (* All tests should evaluate to true. *)
 
 (* NOTE: None of the tests in this test suite verify that your solutions *)
-(* use suggested high-order functions. *)
+(* use suggested higher-order functions. *)
 (* You should check that yourself! *)
 
-(** High-Order Fun **)
+(** Higher-Order Fun **)
 
 (* There Can Be Only One *)
 

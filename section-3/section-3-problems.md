@@ -1,6 +1,6 @@
 # Practice Problems for Section 3
 
-## High-Order Fun
+## Higher-Order Fun
 
 ### There Can Be Only One
 
@@ -215,7 +215,7 @@ helper function:
 
 Write a function `any_divisible_by` following the
 specification from Section 1's **Element Of A List** problem.
-Use folds or other high-order list functions. Use the
+Use folds or other higher-order list functions. Use the
 following implementation of `is_divisible_by` as a helper
 function:
 
