@@ -10,7 +10,7 @@ for my $fn (split /\n/m, $x)
     my $tgt = $fn;
     $tgt =~ s/\.md$/.pdf/;
     print 'Building '.$tgt."\n";
-    system('pandoc -o '.$tgt.' '.$fn);
+    system('sed '."'".'s/\$\$/$/g'."'".' '.$fn.' | pandoc -o '.$tgt);
 }
 
 system('tar czvf pdfs.tar.gz `find . -name \'*.pdf\'`');
