@@ -1,4 +1,4 @@
-(* Rather pointless tail-recursive tree traevrsal. *)
+(* Rather pointless tail-recursive tree traversal. *)
 (* Note that you DON'T need this in SML. *)
 
 datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree }
