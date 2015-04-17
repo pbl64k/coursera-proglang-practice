@@ -116,7 +116,7 @@ Try to figure out how does this work, and what should the
 definitions for `fst` and `snd` be. If you need to introduce
 any names, use `_x` and `_y` (with `_x` introduced first). You
 shouldn't need more than two names. Note that we're being
-unhygienic, be we're not going to bother generating safe names
+unhygienic, but we're not going to bother generating safe names
 instead.
 
 Write a function `simplify` that accepts a MUPL program as
