@@ -1,0 +1,146 @@
+Compiled by the community TA team during the last run of Programming Languages on the old platform.
+
+=== Higher-Order Fun ===
+
+=== There Can Be Only One ===
+
+Write functions $$\verb|fold_map|$$ and $$\verb|fold_filter|$$ that have the same signatures and behavior as $$\verb|List.map|$$ and $$\verb|List.filter|$$ correspondingly. Use $$\verb|List.foldr|$$. Do not use pattern matching or any other list functions.
+SIGNATURE: $$\verb|val fold_map = fn : ('a -> 'b) -> 'a list -> 'b list|$$
+EXAMPLE: $$\verb|fold_map (fn x => x + 1) [1, 2, 3, 4, 5] = [2, 3, 4, 5, 6]|$$
+SIGNATURE: $$\verb|val fold_filter = fn : ('a -> bool) -> 'a list -> 'a list|$$
+EXAMPLE: $$\verb|fold_filter (fn x => x mod 2 = 0) [1, 2, 3, 4, 5] = [2, 4]|$$
+
+=== The Evil Twin ===
+
+Write a function $$\verb|unfold|$$ that takes a state transition function and an initial state and produces a list. On each step the current state is fed into the state transition function, which evaluates either to $$\verb|NONE|$$, indicating that the result should contain no more elements, or to $$\verb|SOME|$$ $$pair$$, where $$pair$$ contains the next state and the next list element.
+SIGNATURE: $$\verb|val unfold = fn : ('a -> ('a * 'b) option) -> 'a -> 'b list|$$
+EXAMPLE: $$\verb|unfold (fn x => if x > 3 then NONE else SOME (x + 1, x)) 0 = [0, 1, 2, 3]|$$
+
+=== A Novel Approach ===
+
+Write a function $$\verb|factorial|$$ that takes an integer number $$n$$ and evaluates to $$n!$$. Your function should be a composition of $$\verb|unfold|$$ and $$\verb|List.foldl|$$. You should not use any other list functions, recursion or pattern matching.
+BONUS QUESTION: Is this function as good as a simple tail-recursive factorial implementation?
+SIGNATURE: $$\verb|val factorial = fn : int -> int|$$
+EXAMPLE: $$\verb|factorial 4 = 24|$$
+
+=== Unforeseen Developments ===
+
+Write a function $$\verb|unfold_map|$$, that behaves exactly as $$\verb|List.map|$$ and $$\verb|fold_map|$$, but that would be implemented in terms of $$\verb|unfold|$$.
+SIGNATURE: $$\verb|val unfold_map = fn : ('a -> 'b) -> 'a list -> 'b list|$$
+EXAMPLE: $$\verb|unfold_map (fn x => x + 1) [1, 2, 3, 4, 5] = [2, 3, 4, 5, 6]|$$
+
+=== So Imperative (*) ===
+
+Write a function $$\verb|do_until|$$ that takes three arguments, $$\verb|f|$$, $$\verb|p|$$ and $$\verb|x|$$, and keeps applying $$\verb|f|$$ to $$\verb|x|$$ until $$\verb|p x|$$ evaluates to $$\verb|true|$$. Upon reaching that condition, $$\verb|f (f (f ... (f x) ...))|$$ is returned.
+SIGNATURE: $$\verb|val do_until = fn : ('a -> 'a) -> ('a -> bool) -> 'a -> 'a|$$
+EXAMPLE: $$\verb|do_until (fn x => x div 2) (fn x => x mod 2 <> 0) 48 = 3|$$
+
+=== Yet Another Factorial ===
+
+Write a function $$\verb|imp_factorial|$$ that has the same behavior as the $$\verb|factorial|$$ function described above, but is defined in terms of $$\verb|do_until|$$.
+NOTE: There is a deep relationship between these two versions of $$\verb|factorial|$$ function, with $$\verb|imp_factorial|$$ eliminating the building of an intermediate list.
+SIGNATURE: $$\verb|val imp_factorial = fn : int -> int|$$
+EXAMPLE: $$\verb|imp_factorial 4 = 24|$$
+
+=== Fixed Point (*) ===
+
+Write a function $$\verb|fixed_point|$$ that accepts some function $$\verb|f|$$ and an initial value $$\verb|x|$$, and keeps applying $$\verb|f|$$ to $$\verb|x|$$ until an $$\verb|x|$$ is found such that $$\verb|f x = x|$$. Note that the function must have the same domain and codomain, and that the values must be comparable for equality.
+SIGNATURE: $$\verb|val fixed_point = fn : (''a -> ''a) -> ''a -> ''a|$$
+EXAMPLE: $$\verb|fixed_point (fn x => x div 2) 17 = 0|$$
+
+=== Newton's Method ===
+
+Square root of a real number $$n$$ is a fixed point of function $$f_n(x) = \frac{1}{2}(x + \frac{n}{x})$$.  Unfortunately, for reasons rooted in the arcane art of numerical analysis, $$\verb|real|$$s are not comparable for equality in Standard ML. Write a function $$\verb|my_sqrt|$$ that takes a real number and evaluates to an approximation of its square root.  You will probably need to write a version of $$\verb|fixed_point|$$ that uses "difference in absolute value less than $$\epsilon$$" as a test for equality. Use $$\epsilon = 0.0001$$. Use the number itself as an initial guess.
+SIGNATURE: $$\verb|val my_sqrt = fn : real -> real|$$
+EXAMPLE: $$\verb|abs (my_sqrt 2.0 - Math.sqrt 2.0) < 0.01|$$
+
+=== Deeper Into The Woods ===
+
+Let's reuse the binary tree data structure from practice problems for Section 2:
+$$\verb"datatype 'a tree = leaf | node of { value : 'a, left : 'a tree, right : 'a tree }"$$
+Write functions $$\verb|tree_fold|$$ and $$\verb|tree_unfold|$$ that would serve as equivalents of $$\verb|fold|$$ and $$\verb|unfold|$$ on lists for this data structure.
+HINT: This is a hard problem, but consider this: the initial value for $$\verb|fold|$$ corresponds to the base case of recursion on lists (i.e., matching $$\verb|[]|$$), while the function passed to the $$\verb|fold|$$ corresponds to the case when we match on $$\verb|::|$$. $$\verb|[]|$$ and $$\verb|::|$$ correspond to $$\verb|leaf|$$ and $$\verb|node|$$ data constructors. Similar reasoning applies to $$\verb|unfold|$$. You might also want to meditate over the signatures below if this does not provide sufficient insight.
+SIGNATURE: $$\verb|val tree_fold = fn : ('a * 'b * 'a -> 'a) -> 'a -> 'b tree -> 'a|$$
+EXAMPLE: $$\verb|tree_fold (fn (l, v, r) => l ^ v ^ r) "!" (node { value = "foo", left = node { value = "bar", left = leaf, right = leaf }, right = node { value = "baz", left = leaf, right = leaf }}) = "!bar!foo!baz!"|$$
+SIGNATURE: $$\verb|val tree_unfold = fn : ('a -> ('a * 'b * 'a) option) -> 'a -> 'b tree|$$
+EXAMPLE: $$\verb|tree_unfold (fn x => if x = 0 then NONE else SOME (x - 1, x, x - 1)) 2 = node { value = 2, left = node { value = 1, left = leaf, right = leaf }, right = node { value = 1, left = leaf, right = leaf }}|$$
+
+=== A Grand Challenge ===
+
+Let's try to write a simple type inference algorithm for a very simple expression language. We won't deal with functions, variables or polymorphism.
+The expressions will be represented by the following data type:
+$$\verb"datatype expr = literal_bool | literal_int | binary_bool_op of expr * expr | binary_int_op of expr * expr | comparison of expr * expr | conditional of expr * expr * expr"$$
+The data constructors represent literal booleans, literal integers, binary operators on booleans, binary operators on integers, comparison operators and conditionals. Since we're only interested in types, and not in actually evaluating our expressions, we're omitting immaterial details, such as whether a literal boolean is "true" or "false", or whether an operator on integers is addition, subtraction or something else entirely.
+The types will be represented by the following simple datatype:
+$$\verb"datatype expr_type = type_bool | type_int"$$
+The typing rules for our expression language are simple:
+
+1. Literal booleans are of type $$\verb|type_bool|$$.
+2. Literal integers have type $$\verb|type_int|$$.
+3. Boolean operators have type $$\verb|type_bool|$$ provided that both of their operands also have type $$\verb|type_bool|$$.
+4. Integer operators have type $$\verb|type_int|$$ provided that both operands also have type $$\verb|type_int|$$.
+5. Comparison operators have type $$\verb|type_bool|$$ provided that both operands have type $$\verb|type_int|$$.
+6. Conditionals have the same type as the first branch, provided that the second branch has the same type, and the condition has type $$\verb|type_bool|$$.
+
+Write a function $$\verb|infer_type|$$ that accepts an $$\verb|expr|$$ and evaluates to the type of the given expression. If the type cannot be determined according to the rules above, raise $$\verb|TypeError|$$ exception.
+SIGNATURE: $$\verb|val infer_type = fn : expr -> expr_type|$$
+EXAMPLE: $$\verb|infer_type (conditional (literal_bool, literal_int, binary_int_op (literal_int, literal_int))) = type_int|$$
+
+=== Back To The Future! 2 ===
+
+A few of the practice problems from previous weeks can be rewritten more elegantly using the material from this week.  All problem statements, SIGNATURES and EXAMPLES remain the same. If there are any additional considerations, these will be mentioned below. Only some of the potentially eligible problems are included -- naturally, you're welcome to rewrite the rest on your own, using similar approaches.
+
+=== GCD -- Final Redux ===
+
+Write a function $$\verb|gcd_list|$$ following the specification from week 2's "Greated Common Divisor -- Continued" problem.  Use folds. Use the following implementation of $$\verb|gcd|$$ as a helper function:
+
+    fun gcd (a : int, b : int) =
+        if a = b
+        then a
+        else
+            if a < b
+            then gcd (a, b - a)
+            else gcd (a - b, b)
+
+=== Element Of A List -- Final Redux ===
+
+Write a function $$\verb|any_divisible_by|$$ following the specification from week 2's "Element Of A List" problem.  Use folds or other higher-order list functions. Use the following implementation of $$\verb|is_divisible_by|$$ as a helper function:
+$$\verb|fun is_divisible_by (a : int, b : int) = a mod b = 0|$$
+
+=== Quirky Addition -- Continued -- Final Redux (*) ===
+
+Write a function $$\verb|add_all_opt|$$ following the specification from week 2's "Quirky Addition -- Continued" problem. Use folds.
+
+=== Flip Flop -- Final Redux (*) ===
+
+Write a function $$\verb|alternate|$$ following the specification from week 2's "Flip Flop" problem. Use folds.
+
+=== Minimum/Maximum -- Final Redux (*) ===
+
+Write a function $$\verb|min_max|$$ following the specification from week 2's "Minimum/Maximum" problem. Use folds.
+
+=== Lists And Tuples, Oh My! - Final Redux ===
+
+Write a function $$\verb|unzip|$$ following the specification from week 2's "Lists And Tuples, Oh My!" problem. Use folds.
+NOTE: The type of your function is probably going to be more general that the one specified in the original problem.  That's totally fine -- awesome, actually!
+
+=== Lists And Tuples, Oh My! -- Continued (1) -- Final Redux (*) ===
+
+Write a function $$\verb|zip|$$ following the specification from week 2's "Lists And Tuples, Oh My! -- Continued (1)" problem. Use $$\verb|unfold|$$ that you wrote in "The Evil Twin" problem.
+NOTE: The type of your function is probably going to be more general that the one specified in the original problem.  That's totally fine -- awesome, actually!
+
+=== BBCA -- Final Redux (*) ===
+
+Write a function $$\verb|repeats_list|$$ following the specification from week 2's "BananaBanana -- Continued (Again)" problem. Use folds.
+NOTE: The type of your function is probably going to be more general that the one specified in the original problem.  That's totally fine -- awesome, actually!
+
+=== 38 Cons Cells -- Final Redux ===
+
+Write a function $$\verb|length_of_a_list|$$ following the specification from week 3's "38 Cons Cells" problem.  Use folds.
+
+=== Forest For The Trees -- Final Redux ===
+
+Write functions $$\verb|tree_height|$$, $$\verb|sum_tree|$$ and $$\verb|gardener|$$ following specifications from week 3's "Forest For The Trees" series of problems. Use $$\verb|tree_fold|$$ and/or $$\verb|tree_unfold|$$.
+
+(*) Problems contributed by Charilaos Skiadas.
+

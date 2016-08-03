@@ -167,7 +167,7 @@ on your own, using similar approaches.
 ### GCD -- Redux
 
 Write a function `gcd_list` following the specification from
-Section 1's **Greated Common Divisor -- Continued** problem.
+Section 1's **Greatest Common Divisor -- Continued** problem.
 Use pattern matching instead of list functions. Use the
 following implementation of `gcd` as a helper function:
 
